@@ -12,7 +12,9 @@ public class PoolManager : MonoBehaviour
         pools = new List<GameObject>[prefabs.Length];
 
         for (int index = 0; index < pools.Length; index++)
+        {
             pools[index] = new List<GameObject>();
+        }
     }
 
     public GameObject Get(int index)
@@ -36,18 +38,5 @@ public class PoolManager : MonoBehaviour
         }
 
         return select;
-    }
-
-    public void Clear(int index)
-    {
-        foreach (GameObject item in pools[index])
-            item.SetActive(false);
-    }
-
-    public void ClearAll()
-    {
-        for (int index = 0; index < pools.Length; index++)
-            foreach (GameObject item in pools[index])
-                item.SetActive(false);
     }
 }
