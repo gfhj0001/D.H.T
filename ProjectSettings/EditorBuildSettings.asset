@@ -6,14 +6,35 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/1.Start_loading 1.unity
+    guid: a67dbbc94056bd644a7dc53948c4e7b8
   - enabled: 1
-    path: Assets/Scenes/1.Start_loading.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+    path: Assets/Scenes/2.main.unity
+    guid: 413970fe6196508459a8c1dba191e5a4
   - enabled: 1
-    path: Assets/Scenes/1.Start_loading.unity
-    guid: 33c7320b2b9a38c498a52e283bd35553
+    path: "Assets/Scenes/3. \uC2A4\uD14C\uC774\uC9C0 \uC120\uD0DD.unity"
+    guid: 9bac1418680f1644bad7e30cbd53811f
+  - enabled: 1
+    path: Assets/Scenes/4.quset.unity
+    guid: f1c1d124a1683b746b325f49bc0dde01
+  - enabled: 1
+    path: "Assets/Scenes/5. \uC6A9\uBCD1.unity"
+    guid: 2e8abb456477d20438a83a9758ef2d35
+  - enabled: 1
+    path: Assets/Scenes/6 Status Enhancement.unity
+    guid: 1d3ab1be7d2578b4cabeb0fb264075e2
+  - enabled: 1
+    path: Assets/Scenes/10.option.unity
+    guid: 2dd17d9b2d7f4134db658f59a90fb0c0
+  - enabled: 1
+    path: Assets/Scenes/10.option 1.unity
+    guid: 75932acede90f6a428a69fdd112999fc
+  - enabled: 1
+    path: Assets/Scenes/10.option 2.unity
+    guid: 17b4e6a9ef20811499558bb5b82cf5e2
+  - enabled: 1
+    path: Assets/Scenes/practice.unity
+    guid: e31ff1ee2055ab44db3a266fafee9bfe
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6eef8dec9b7054540a38e2dea11df874, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1d492a983e79bed40a83e5062f0c9f28, type: 2}
