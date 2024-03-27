@@ -10,7 +10,7 @@ public class Repostion : MonoBehaviour
     {
         coll = GetComponent<Collider2D>();
     }
-    //0.4_4 재배치로직
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Area"))
