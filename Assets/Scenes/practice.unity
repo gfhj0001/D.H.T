@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 210477383}
   m_Layer: 0
   m_Name: PoolManager
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9889,7 +9889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 0
-  maxGameTime: 3000
+  maxGameTime: 20
   Pool: {fileID: 210477383}
   player: {fileID: 1447595604}
 --- !u!1 &1681393553
@@ -18592,7 +18592,7 @@ GameObject:
   - component: {fileID: 2006004632}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
