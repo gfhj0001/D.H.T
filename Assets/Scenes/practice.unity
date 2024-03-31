@@ -226,7 +226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 3063072805486903131, guid: 5fe9d6c7b661ecd4ba30917b95c61b50, type: 3}
-  - {fileID: 1107573305838952129, guid: 8c8b27d7398a92e45980beef11155f63, type: 3}
 --- !u!4 &210477384
 Transform:
   m_ObjectHideFlags: 0
@@ -9254,12 +9253,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spriteType: 0
-    spawnTime: 0.7
+  - spawnTime: 0.7
+    spriteType: 0
     health: 10
     speed: 1.5
-  - spriteType: 1
-    spawnTime: 0.2
+  - spawnTime: 0.2
+    spriteType: 1
     health: 15
     speed: 2.5
 --- !u!1 &751473583
