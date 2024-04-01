@@ -28,15 +28,15 @@ public class Repostion : MonoBehaviour
         switch (transform.tag)
         {
             case "Ground":
-                if (diffX > diffY)
-                {
-                    transform.Translate(Vector3.right * dirX * 40);
+                // 타일맵 하나의 크기는 20 -> 두 칸 건너뛰어야 하니 40
+                if (diffX > diffY) {
+                    transform.Translate(dirX * 40, 0, 0);
+                } else if (diffX < diffY) {
+                    transform.Translate(0, dirY * 40, 0);
+                } else {
+                    transform.Translate(dirX * 40, dirY * 40, 0);
                 }
-                else if (diffX < diffY)
-                {
-                    transform.Translate(Vector3.up * dirY * 40);
-                }
-                    break;
+                break;
             case "Enemy":
                 if (coll.enabled)
                 {
