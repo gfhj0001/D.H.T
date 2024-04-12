@@ -12,6 +12,15 @@ public class Weapon : MonoBehaviour
     public int count;
     public float speed;
 
+
+    float timer;
+    Player player;
+
+    void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
+
     void Start()
     {
         Init();
@@ -25,12 +34,18 @@ public class Weapon : MonoBehaviour
 
                 break;
             default:
+                timer += Time.deltaTime;
+
+                if (timer > speed) {
+                    timer = 0f;
+                    Fire();
+                }
                 break;
         }
 
         // .. Test Code..
         if (Input.GetButtonDown("Jump")){
-            LevelUp(20, 5);
+            LevelUp(10, 1);
         }
     }
 
@@ -49,9 +64,9 @@ public class Weapon : MonoBehaviour
             case 0:
                 speed = 150;
                 Batch();
-
                 break;
             default:
+                speed = 0.3f; //연사속도라고 생각 1초에 3발씩
                 break;
         }
     }
@@ -75,7 +90,24 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * 1.5f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, -1); //-1 is Infinity per
+            bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); //-1 is Infinity per
         }
+    }
+
+    void Fire()
+    {
+        if (!player.scanner.nearestTarget)
+            return;
+
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized; //normalized, 벡터의 방향은 유지하고 크기를 1로 변환, 즉 총알이 나가고자 하는 방향임.
+
+
+        Transform bullet = GameManager.instance.Pool.Get(prefabId).transform;
+        bullet.position = transform.position;
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+        bullet.GetComponent<Bullet>().Init(damage, count, dir);
+
     }
 }

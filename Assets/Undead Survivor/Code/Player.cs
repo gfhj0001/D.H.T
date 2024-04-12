@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
+    public Scanner scanner;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
+        scanner = GetComponent<Scanner>();
     }
 
     void Update()
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
     {
 
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        //À§Ä¡ÀÌµ¿
+        //ï¿½ï¿½Ä¡ï¿½Ìµï¿½
         rigid.MovePosition(rigid.position + nextVec);
     }
     void LateUpdate()
