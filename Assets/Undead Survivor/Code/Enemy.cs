@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.CompareTag("Bullet")) //충돌한게 Bullet인지 검사함.
+        if(!collision.CompareTag("Bullet") || !isLive) //충돌한게 Bullet인지 검사함.
             return;
 
         health -= collision.GetComponent<Bullet>().damage;
@@ -79,8 +79,9 @@ public class Enemy : MonoBehaviour
             rigid.simulated = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
-            
-        } 
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp();
+        }
     }
 
 
