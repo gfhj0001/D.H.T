@@ -28,12 +28,11 @@ public class Player : MonoBehaviour
     {
 
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        //��ġ�̵�
         rigid.MovePosition(rigid.position + nextVec);
     }
     void LateUpdate()
     {
-        anim.SetFloat("Speed", inputVec.magnitude);
+        // anim.SetFloat("Speed", inputVec.magnitude); .. 에러 발생해서 주석처리함.
 
         if (inputVec.x != 0) {
             spriter.flipX = inputVec.x < 0;
