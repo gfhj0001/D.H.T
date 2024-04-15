@@ -11,7 +11,7 @@ public class ItemData : ScriptableObject
 
     [Header("# Main Info")]
     public ItemType itemType;
-    public int itmeID;
+    public int itmeId;
     public string itemName;
     public string itemDesc;
     public Sprite itemIcon;
