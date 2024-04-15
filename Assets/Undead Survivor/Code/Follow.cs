@@ -5,7 +5,7 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     RectTransform rect;
-    void Start()
+    void Awake()
     {
         rect = GetComponent<RectTransform>();
     }

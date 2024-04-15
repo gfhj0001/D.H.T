@@ -18,6 +18,7 @@ public class NewBehaviourScript : MonoBehaviour
         mySlider = GetComponent<Slider>();
     }
 
+
     void LateUpdate()
     {
         switch (type){
@@ -29,7 +30,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             case InfoType.Health:
                 float curHealth = GameManager.instance.health;
-                float maxhealth = GameManager.instance.maxhealth;
+                float maxhealth = GameManager.instance.maxHealth;
                 mySlider.value = curHealth / maxhealth;
             break;
 
