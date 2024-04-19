@@ -112,6 +112,7 @@ public class Weapon : MonoBehaviour
             bullet.Translate(bullet.up * 1.5f, Space.World);
             bullet.GetComponent<Bullet>().Init(damage, -1, Vector3.zero); //-1 is Infinity per
         }
+        // AudioManager.instance.PlaySfx(AudioManager.Sfx.Melee);
     }
 
     void Fire()
@@ -129,5 +130,6 @@ public class Weapon : MonoBehaviour
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage, count, dir);
 
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
 }
