@@ -20,21 +20,29 @@ public class Bullet : MonoBehaviour
         this.damage = damage;
         this.per = per;
 
-        if(per > -1 ) { //관통이 -1 보다 큰것에 대해서는 속도를 적용함.
+        if(per >= 0 ) {
             rigid.velocity = dir * 15f;
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision){
-        if (!collision.CompareTag("Enemy") || per == -1) //-1은 근접무기 이므로 관통에 대해 신경쓸필요 없음.
+        if (!collision.CompareTag("Enemy") || per == -100) //-1은 근접무기 이므로 관통에 대해 신경쓸필요 없음.
             return; 
 
         per--;
 
-        if (per == -1) {
+        if (per < 0) {
             rigid.velocity = Vector2.zero;
             gameObject.SetActive(false);
         }
+    }
+
+    void OnTriggerExit2D (Collider2D collision)
+    {
+        if (!collision.CompareTag("Area") || per == -100)
+            return;
+
+        gameObject.SetActive(false);
     }
 
 }
