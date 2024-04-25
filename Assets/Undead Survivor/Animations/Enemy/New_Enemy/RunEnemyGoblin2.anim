@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ant2_standing
+  m_Name: RunEnemyGoblin2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: a69c9ee2790532c4294fe7fb2a2a8b30, type: 3}
+      value: {fileID: 21300000, guid: e2efc4e0dae264b4180621670fc7c3f3, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: b0b3af96bf161cf4bb9c54048463cb91, type: 3}
+      value: {fileID: 21300000, guid: 3345dccf4c909974683e37856369613d, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 5cff9d7d241dcd449aae890d3c3b0061, type: 3}
+      value: {fileID: 21300000, guid: 97c6dacc270028b479c1f9564885ba56, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: f2ae7257f7de2474d937f15d517965fd, type: 3}
+      value: {fileID: 21300000, guid: 5c33397c6c169c941b7ab03a214f5d24, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a69c9ee2790532c4294fe7fb2a2a8b30, type: 3}
-    - {fileID: 21300000, guid: b0b3af96bf161cf4bb9c54048463cb91, type: 3}
-    - {fileID: 21300000, guid: 5cff9d7d241dcd449aae890d3c3b0061, type: 3}
-    - {fileID: 21300000, guid: f2ae7257f7de2474d937f15d517965fd, type: 3}
+    - {fileID: 21300000, guid: e2efc4e0dae264b4180621670fc7c3f3, type: 3}
+    - {fileID: 21300000, guid: 3345dccf4c909974683e37856369613d, type: 3}
+    - {fileID: 21300000, guid: 97c6dacc270028b479c1f9564885ba56, type: 3}
+    - {fileID: 21300000, guid: 5c33397c6c169c941b7ab03a214f5d24, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

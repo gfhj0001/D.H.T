@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mole_standing
+  m_Name: RunEnemyant2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 01985180ee1eba24d99710bd04463cfb, type: 3}
+      value: {fileID: 21300000, guid: 6fb8609a9848ac044b0b24fa6ae7f1c7, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 51206e77f21b7f44b98f2cd3fce23221, type: 3}
+      value: {fileID: 21300000, guid: f0dcc0a24b3b9f04496b714a0b023100, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 2b68094722d16a64b910f2e70451ce7e, type: 3}
+      value: {fileID: 21300000, guid: 2a1b79b45e6de3a4399ad12759934ef4, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: cd2d2adef0cd85e49a72be5ea1d1703a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,15 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 01985180ee1eba24d99710bd04463cfb, type: 3}
-    - {fileID: 21300000, guid: 51206e77f21b7f44b98f2cd3fce23221, type: 3}
-    - {fileID: 21300000, guid: 2b68094722d16a64b910f2e70451ce7e, type: 3}
+    - {fileID: 21300000, guid: 6fb8609a9848ac044b0b24fa6ae7f1c7, type: 3}
+    - {fileID: 21300000, guid: f0dcc0a24b3b9f04496b714a0b023100, type: 3}
+    - {fileID: 21300000, guid: 2a1b79b45e6de3a4399ad12759934ef4, type: 3}
+    - {fileID: 21300000, guid: cd2d2adef0cd85e49a72be5ea1d1703a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
