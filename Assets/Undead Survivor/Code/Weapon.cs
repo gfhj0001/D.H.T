@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         player = GameManager.instance.player;
+        
     }
 
 
@@ -77,23 +78,7 @@ public class Weapon : MonoBehaviour
                 player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
                 break;
             case 3:
-                switch (count) { //단검 레벨업시 공속 증가 로직.
-                    case 1:
-                        speed_knife = speed_knife * (1f - 0.1f);
-                        break;
-                    case 2:
-                        speed_knife = speed_knife * (1f - 0.15f);
-                        break;
-                    case 3:
-                        speed_knife = speed_knife * (1f - 0.2f);
-                        break;
-                    case 4:
-                        speed_knife = speed_knife * (1f - 0.25f);
-                        break;
-                    default:
-                        speed_knife = speed_knife * (1f - 0.35f);
-                        break;
-                }
+                speed_knife = speed_knife * 0.9f;
                 break;
         }
 
@@ -214,19 +199,14 @@ public class Weapon : MonoBehaviour
             return;
 
 
-        // 목표 방향 계산
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dirToTarget = (targetPos - transform.position).normalized;
-
         // 무작위한 방향 벡터 생성
         Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = randomDirection - dir;
+        dir = dir.normalized;
 
-        // 목표 방향을 기준으로 무작위 방향을 조정
-        Vector3 randomDirAdjusted = randomDirection + dirToTarget;
-
-        // 정규화된 방향 벡터로 변환, 방향벡터는 목표를 향하게하였고 무작위 벡터를 더함으로 단검을 적을 향해 대충 던진듯한 느낌이 나듯이 발사함.
-        Vector3 dir = randomDirAdjusted.normalized;
-
+        Debug.Log($"{dir}, dir값");
         Transform bullet = GameManager.instance.Pool.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 방향을 무작위 방향으로 설정
@@ -234,4 +214,9 @@ public class Weapon : MonoBehaviour
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
+
+
+
+
+    
 }
