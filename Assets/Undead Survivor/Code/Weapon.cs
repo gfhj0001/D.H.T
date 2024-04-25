@@ -101,12 +101,12 @@ public class Weapon : MonoBehaviour
     public void Init(ItemData data)
     {
         // Basic Set
-        name = "Weapon " + data.itmeId;
+        name = "Weapon " + data.itemId;
         transform.parent = player.transform;
         transform.localPosition = Vector3.zero;
 
         // property Set
-        id = data.itmeId;
+        id = data.itemId;
         damage = data.baseDamage;
         count = data.baseCount;
 
