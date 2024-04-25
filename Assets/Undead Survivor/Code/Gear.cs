@@ -6,6 +6,7 @@ public class Gear : MonoBehaviour
 {
     public ItemData.ItemType type;
     public float rate;
+    public int id;
 
     public void Init(ItemData data)
     {
@@ -17,6 +18,7 @@ public class Gear : MonoBehaviour
         // Property Set
         type = data.itemType;
         rate = data.damages[0];
+        id = data.itmeId;
         ApplyGear();
     }
 
@@ -26,16 +28,56 @@ public class Gear : MonoBehaviour
         ApplyGear();
     }
 
-    void ApplyGear()
+   void ApplyGear()
     {
-        switch(type) {
-            case ItemData.ItemType.Glove:
+        switch(id) {
+            case 92:
+                Damageup();
+                break;
+            case 93:
+                Healthup();
+                break;
+            case 94:
+                Takedamagedown();
+                break;
+            case 95:
+                Recovery();
+                break;
+            case 96:
+                Lifesteal();
+                break;
+            case 97:
                 RateUp();
                 break;
-            case ItemData.ItemType.Shoe:
+            case 98:
                 SpeedUp();
                 break;
         }
+    }
+    void Damageup()
+    {
+        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
+        
+        foreach(Weapon weapon in weapons) {
+            weapon.damage *= (1 + rate);
+        }
+    }
+    void Healthup()
+    {
+        GameManager.instance.maxHealth *= (1 + rate);
+        GameManager.instance.health = GameManager.instance.maxHealth; //일단 최대체력이 증가하면서 전체 체력도 회복하는 방식으로 코드 작성
+    }
+    void Takedamagedown()
+    {
+        //switch나 flag를 통해 count값을 player스크립트의 55줄로 갖고 가기
+    }
+    void Recovery()
+    {
+         
+    }
+    void Lifesteal()
+    {
+        //enemy 75줄
     }
 
     void RateUp() //연사속도

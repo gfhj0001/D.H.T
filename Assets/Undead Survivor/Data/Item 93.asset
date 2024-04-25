@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12c9e17f06457548868c13b8bf5000f, type: 3}
   m_Name: Item 93
   m_EditorClassIdentifier: 
-  itemType: 2
+  itemType: 4
   itmeId: 93
   itemName: "\uB300\uC9C0\uC758 \uBCF4\uC11D"
   itemDesc: "\uCCB4\uB825{0}% \uC99D\uAC00"
@@ -20,10 +20,10 @@ MonoBehaviour:
   baseDamage: 0
   baseCount: 0
   damages:
-  - 0.1
-  - 0.2
-  - 0.35
-  - 0.5
-  - 0.75
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
   counts: 0000000000000000000000000000000000000000
   projectile: {fileID: 0}
