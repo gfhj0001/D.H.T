@@ -51,7 +51,10 @@ public class Gear : MonoBehaviour
                     weapon.speed_hammer = 100 + (100 * rate);
                     break;
                 case 2 : //창
-                    weapon.speed = 0.5f * (1f - rate);
+                    weapon.speed = 0.75f * (1f - rate);
+                    break;
+                case 3 : //단검
+                    weapon.speed_knife = weapon.speed_knife * (1f - rate);
                     break;
             }
         }

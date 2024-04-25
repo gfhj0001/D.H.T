@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -11,8 +12,10 @@ public class Weapon : MonoBehaviour
     public float damage;
     public int count;
     public float speed;
+    public float speed_knife;
     public float speed_sheild;
     public float speed_hammer;
+    public float[] array_speed = {};
 
 
     float timer;
@@ -21,6 +24,7 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         player = GameManager.instance.player;
+        
     }
 
 
@@ -44,14 +48,25 @@ public class Weapon : MonoBehaviour
                     Fire();
                 }
                 break;
+            case 3: //단검
+                timer += Time.deltaTime;
+
+                if (timer > speed_knife) {
+                    timer = 0f;
+                    Fire_knife();
+                }
+                break;
         }
 
     }
 
     public void LevelUp(float damage, int count)
     {
+
         this.damage = damage;
         this.count += count;
+
+
 
         switch (id) {
             case 0:
@@ -61,6 +76,9 @@ public class Weapon : MonoBehaviour
             case 1: 
                 Batch_hammer();
                 player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+                break;
+            case 3:
+                speed_knife = speed_knife * 0.9f;
                 break;
         }
 
@@ -76,13 +94,18 @@ public class Weapon : MonoBehaviour
         id = data.itmeId;
         damage = data.baseDamage;
         count = data.baseCount;
+
         
         for (int index=0; index < GameManager.instance.Pool.prefabs.Length; index++) {
             if (data.projectile == GameManager.instance.Pool.prefabs[index]) {
+                Debug.Log(GameManager.instance.Pool.prefabs[index]);
                 prefabId = index;
                 break;
             }
         }
+
+
+
 
         switch (id) {
             case 0: //방패
@@ -94,7 +117,10 @@ public class Weapon : MonoBehaviour
                 Batch_hammer();
                 break;
             case 2: //창
-                speed = 0.3f; //연사속도라고 생각 1초에 3발씩
+                speed = 0.75f; // 1.5초에 2발 발사.
+                break;
+            case 3: //단검 랜덤한 방향으로 날아감.
+                speed_knife = 0.6f; // 1.2초에 2발 발사.
                 break;
         }
 
@@ -148,6 +174,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+
     void Fire() //창이 사라지는 범위 화면과 비슷하게 축소 해봐야 될듯?
     {
         if (!player.scanner.nearestTarget)
@@ -157,7 +184,7 @@ public class Weapon : MonoBehaviour
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized; //normalized, 벡터의 방향은 유지하고 크기를 1로 변환, 즉 총알이 나가고자 하는 방향임.
 
-
+        
         Transform bullet = GameManager.instance.Pool.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
@@ -165,4 +192,31 @@ public class Weapon : MonoBehaviour
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
+
+    void Fire_knife() //랜덤한 방향으로 날아감.
+    {
+        if (!player.scanner.nearestTarget)
+            return;
+
+
+        // 무작위한 방향 벡터 생성
+        Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = randomDirection - dir;
+        dir = dir.normalized;
+
+        Debug.Log($"{dir}, dir값");
+        Transform bullet = GameManager.instance.Pool.Get(prefabId).transform;
+        bullet.position = transform.position;
+        bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 방향을 무작위 방향으로 설정
+        bullet.GetComponent<Bullet>().Init(damage, count, dir); // 총알에게 무작위 방향 설정
+
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
+    }
+
+
+
+
+    
 }

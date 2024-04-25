@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
-    public GameObject[] prefabs; // 인스펙터에서 초기화
+    public GameObject[] prefabs;
     List<GameObject>[] pools;
 
 
