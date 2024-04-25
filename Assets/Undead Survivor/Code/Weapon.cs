@@ -32,13 +32,11 @@ public class Weapon : MonoBehaviour
         switch (id) {
             case 0: //방패
                 transform.Rotate(Vector3.back * speed_sheild * Time.deltaTime);
-
                 break;
             case 1: //망치
                 transform.Rotate(Vector3.back * speed_hammer * Time.deltaTime);
-
                 break;
-            default:
+            case 2: //창
                 timer += Time.deltaTime;
 
                 if (timer > speed) {
@@ -48,10 +46,6 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
-        // .. Test Code..
-        if (Input.GetButtonDown("Jump")){
-            LevelUp(10, 1);
-        }
     }
 
     public void LevelUp(float damage, int count)
@@ -99,7 +93,7 @@ public class Weapon : MonoBehaviour
                 speed_hammer = 100;
                 Batch_hammer();
                 break;
-            default:
+            case 2: //창
                 speed = 0.3f; //연사속도라고 생각 1초에 3발씩
                 break;
         }
@@ -154,7 +148,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void Fire()
+    void Fire() //창이 사라지는 범위 화면과 비슷하게 축소 해봐야 될듯?
     {
         if (!player.scanner.nearestTarget)
             return;

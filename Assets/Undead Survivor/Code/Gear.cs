@@ -50,7 +50,7 @@ public class Gear : MonoBehaviour
                 case 1: //망치
                     weapon.speed_hammer = 100 + (100 * rate);
                     break;
-                default:
+                case 2 : //창
                     weapon.speed = 0.5f * (1f - rate);
                     break;
             }
