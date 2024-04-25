@@ -44,8 +44,11 @@ public class Gear : MonoBehaviour
 
         foreach(Weapon weapon in weapons) {
             switch(weapon.id) {
-                case 0:
-                    weapon.speed = 150 + (150 * rate);
+                case 0: //방패
+                    weapon.speed_sheild = -150 + (-150 * rate);
+                    break;
+                case 1: //망치
+                    weapon.speed_hammer = 100 + (100 * rate);
                     break;
                 default:
                     weapon.speed = 0.5f * (1f - rate);

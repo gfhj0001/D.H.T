@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
     public float damage;
     public int count;
     public float speed;
+    public float speed_sheild;
+    public float speed_hammer;
 
 
     float timer;
@@ -28,8 +30,12 @@ public class Weapon : MonoBehaviour
             return;
 
         switch (id) {
-            case 0:
-                transform.Rotate(Vector3.back * speed * Time.deltaTime);
+            case 0: //방패
+                transform.Rotate(Vector3.back * speed_sheild * Time.deltaTime);
+
+                break;
+            case 1: //망치
+                transform.Rotate(Vector3.back * speed_hammer * Time.deltaTime);
 
                 break;
             default:
@@ -53,10 +59,17 @@ public class Weapon : MonoBehaviour
         this.damage = damage;
         this.count += count;
 
-        if(id == 0)
-            Batch();
+        switch (id) {
+            case 0:
+                Batch_sheild();
+                player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+                break;
+            case 1: 
+                Batch_hammer();
+                player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+                break;
+        }
 
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
     public void Init(ItemData data)
     {
@@ -78,9 +91,13 @@ public class Weapon : MonoBehaviour
         }
 
         switch (id) {
-            case 0:
-                speed = 150;
-                Batch();
+            case 0: //방패
+                speed_sheild = -150;
+                Batch_sheild();
+                break;
+            case 1: //망치
+                speed_hammer = 100;
+                Batch_hammer();
                 break;
             default:
                 speed = 0.3f; //연사속도라고 생각 1초에 3발씩
@@ -91,7 +108,7 @@ public class Weapon : MonoBehaviour
 
     }
 
-    void Batch()
+    void Batch_sheild()
     {
         for (int index=0; index < count; index++){
             Transform bullet;
@@ -109,7 +126,30 @@ public class Weapon : MonoBehaviour
 
             Vector3 rotVec = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotVec);
-            bullet.Translate(bullet.up * 1.5f, Space.World);
+            bullet.Translate(bullet.up * 1.7f, Space.World);
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //-100 is Infinity per
+        }
+    }
+
+        void Batch_hammer()
+    {
+        for (int index=0; index < count; index++){
+            Transform bullet;
+
+            if (index < transform.childCount){ //기존 오브젝트를 활용하고, 모자란것을 풀링해서 가져오기.
+                bullet = transform.GetChild(index);
+            }
+            else{
+                bullet = GameManager.instance.Pool.Get(prefabId).transform;
+                bullet.parent = transform;
+            }
+           
+            bullet.localPosition = Vector3.zero;
+            bullet.localRotation = Quaternion.identity;
+
+            Vector3 rotVec = Vector3.forward * 360 * index / count;
+            bullet.Rotate(rotVec);
+            bullet.Translate(bullet.up * 3.5f, Space.World);
             bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //-100 is Infinity per
         }
     }
