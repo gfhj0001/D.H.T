@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 3063072805486903131, guid: 5fe9d6c7b661ecd4ba30917b95c61b50, type: 3}
+  - {fileID: 3063072805486903131, guid: f1aed1afe47a86a4789e9d57cbdf638a, type: 3}
   - {fileID: 1862675720181712372, guid: df6cc35da519df644939a29bdf3ed4ea, type: 3}
   - {fileID: 3619678938641691000, guid: 255a734f26123654ea2c7bfe149832a4, type: 3}
 --- !u!4 &210477384
@@ -6193,7 +6193,6 @@ GameObject:
   - component: {fileID: 692975262}
   - component: {fileID: 692975263}
   - component: {fileID: 692975265}
-  - component: {fileID: 692975264}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -6243,27 +6242,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
   sfxVolume: 0.5
   channels: 16
---- !u!95 &692975264
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692975260}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d73765475d8db484ea14aa97499375b6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &692975265
 SpriteRenderer:
   m_ObjectHideFlags: 0
