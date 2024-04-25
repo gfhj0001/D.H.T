@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e12c9e17f06457548868c13b8bf5000f, type: 3}
-  m_Name: Item 4
+  m_Name: Item 96
   m_EditorClassIdentifier: 
-  itemType: 4
-  itmeId: 99
-  itemName: "\uB9E5\uC8FC!!"
-  itemDesc: "\uC0DD\uBA85\uB825 \uC804\uCCB4 \uD68C\uBCF5"
-  itemIcon: {fileID: 21300000, guid: d1aac31f8de69704e9a20cf25c3ce208, type: 3}
+  itemType: 2
+  itmeId: 96
+  itemName: "\uAC08\uB9DD\uC758 \uBCF4\uC11D"
+  itemDesc: "\uC0DD\uBA85\uB825 \uD761\uC218 {0}% \uC99D\uAC00"
+  itemIcon: {fileID: 21300000, guid: ebb733038ee355f4c977c57195dc41a3, type: 3}
   baseDamage: 0
   baseCount: 0
   damages:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 0.1
+  - 0.2
+  - 0.35
+  - 0.5
+  - 0.75
   counts: 0000000000000000000000000000000000000000
   projectile: {fileID: 0}
