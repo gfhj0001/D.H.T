@@ -11,7 +11,7 @@ public class ItemData : ScriptableObject
 
     [Header("# Main Info")]
     public ItemType itemType;
-    public int itemId;
+    public int itmeId;
     public string itemName;
     [TextArea]
     public string itemDesc;
