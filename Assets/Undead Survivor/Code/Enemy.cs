@@ -69,10 +69,18 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+
+        float currentHealth = GameManager.instance.health;
+
         if(!collision.CompareTag("Bullet") || !isLive) //충돌한게 Bullet인지 검사함.
             return;
 
         health -= collision.GetComponent<Bullet>().damage;
+
+        currentHealth += collision.GetComponent<Bullet>().damage * GameManager.instance.lifeSteal; //가한 피해량의 일정부분 만큼 HP를 회복함.
+        // 현재 체력이 최대 체력을 초과하지 않도록 제한
+        GameManager.instance.health = Mathf.Min(currentHealth, GameManager.instance.maxHealth);
+
         StartCoroutine(KnockBack()); //코루틴 호출하는 법 혹은 StartCoroutine("KnockBack");
 
         if (health > 0){

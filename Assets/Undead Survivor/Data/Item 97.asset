@@ -20,10 +20,10 @@ MonoBehaviour:
   baseDamage: 0
   baseCount: 0
   damages:
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
+  - 0.08
+  - 0.16
+  - 0.24
+  - 0.32
+  - 0.4
   counts: 0000000000000000000000000000000000000000
   projectile: {fileID: 0}

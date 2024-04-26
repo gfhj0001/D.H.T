@@ -31,25 +31,25 @@ public class Gear : MonoBehaviour
    void ApplyGear()
     {
         switch(id) {
-            case 92:
+            case 92: //공격력 증가
                 Damageup();
                 break;
-            case 93:
+            case 93: //체력 증가
                 Healthup();
                 break;
-            case 94:
+            case 94: //받피감 증가
                 Takedamagedown();
                 break;
-            case 95:
-                Recovery();
+            case 95: //3초마다 체력 회복
+                Hp_regeneration();
                 break;
-            case 96:
+            case 96: //생명력 흡수
                 Lifesteal();
                 break;
-            case 97:
+            case 97: //공속 증가
                 RateUp();
                 break;
-            case 98:
+            case 98: //이속 증가
                 SpeedUp();
                 break;
         }
@@ -57,27 +57,52 @@ public class Gear : MonoBehaviour
     void Damageup()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
-        
         foreach(Weapon weapon in weapons) {
             weapon.damage *= (1 + rate);
         }
     }
     void Healthup()
     {
-        GameManager.instance.maxHealth *= (1 + rate);
-        GameManager.instance.health = GameManager.instance.maxHealth; //일단 최대체력이 증가하면서 전체 체력도 회복하는 방식으로 코드 작성
+        float increasedMaxHealth = GameManager.instance.maxHealth * rate;
+        GameManager.instance.maxHealth += increasedMaxHealth;
+        GameManager.instance.health += increasedMaxHealth;
+        //최대 체력이 늘어난만큼 현재 체력도 늘어남.
     }
     void Takedamagedown()
     {
-        //switch나 flag를 통해 count값을 player스크립트의 55줄로 갖고 가기
+        GameManager.instance.takedmgnd = rate;
     }
-    void Recovery()
+    void Hp_regeneration()
     {
-         
+        if (rate == 1) {
+            StartCoroutine(RegenerateHealth(rate));
+        } else {
+            StopAllCoroutines();
+            StartCoroutine(RegenerateHealth(rate));
+        }
+
     }
+
+    IEnumerator RegenerateHealth(float hp_regen_rate)
+    {
+        float currentHealth;
+        while (true) // 무한 반복
+        {
+            yield return new WaitForSeconds(5f); // 5초 기다림
+
+            currentHealth = GameManager.instance.health;
+
+            // 체력을 rate에 따라 회복함.
+            currentHealth += GameManager.instance.maxHealth * hp_regen_rate;
+
+            // 현재 체력이 최대 체력을 초과하지 않도록 제한
+            GameManager.instance.health = Mathf.Min(currentHealth, GameManager.instance.maxHealth);
+        }
+    }
+
     void Lifesteal()
     {
-        //enemy 75줄
+        GameManager.instance.lifeSteal = rate;
     }
 
     void RateUp() //연사속도

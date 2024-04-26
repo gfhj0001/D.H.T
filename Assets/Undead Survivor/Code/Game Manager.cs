@@ -12,10 +12,13 @@ public class GameManager : MonoBehaviour
     public bool isLive;
     public float gameTime;
     public float maxGameTime = 2 * 10f;
+    public int gameLevel;
     [Header("# Player Info")]
     public float health;
     public float maxHealth = 100;
     //health와 maxHealth를 int에서 float로 변경
+    public float takedmgnd; // .. 받는피해감소량 / take damage down ..
+    public float lifeSteal;
     public int level;
     public int kill;
     public int exp;
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        health = maxHealth;
+        health = maxHealth / 2;
         uiLevelUp.Select(0); //임시 스크립트 첫번째 캐릭터 선택
         Resume();
 

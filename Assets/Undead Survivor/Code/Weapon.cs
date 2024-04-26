@@ -113,7 +113,6 @@ public class Weapon : MonoBehaviour
         
         for (int index=0; index < GameManager.instance.Pool.prefabs.Length; index++) {
             if (data.projectile == GameManager.instance.Pool.prefabs[index]) {
-                Debug.Log(GameManager.instance.Pool.prefabs[index]);
                 prefabId = index;
                 break;
             }
@@ -189,7 +188,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-
     void Fire() //창이 사라지는 범위 화면과 비슷하게 축소 해봐야 될듯?
     {
         if (!player.scanner.nearestTarget)
@@ -199,7 +197,6 @@ public class Weapon : MonoBehaviour
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized; //normalized, 벡터의 방향은 유지하고 크기를 1로 변환, 즉 총알이 나가고자 하는 방향임.
 
-        
         Transform bullet = GameManager.instance.Pool.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
@@ -212,7 +209,6 @@ public class Weapon : MonoBehaviour
     {
         if (!player.scanner.nearestTarget)
             return;
-
 
         // 목표 방향 계산
         Vector3 targetPos = player.scanner.nearestTarget.position;

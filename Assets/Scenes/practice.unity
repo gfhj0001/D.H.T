@@ -21251,12 +21251,15 @@ MonoBehaviour:
   isLive: 0
   gameTime: 0
   maxGameTime: 500
+  gameLevel: 0
   health: 0
-  maxHealth: 100
+  maxHealth: 1000
+  takedmgnd: 0
+  lifeSteal: 0
   level: 0
   kill: 0
   exp: 0
-  nextExp: 0300000003000000030000000500000005000000050000000a0000000a0000000a0000000a000000
+  nextExp: 03000000030000000300000003000000030000000300000003000000030000000300000003000000
   Pool: {fileID: 210477383}
   player: {fileID: 1447595604}
   uiLevelUp: {fileID: 948081000}
