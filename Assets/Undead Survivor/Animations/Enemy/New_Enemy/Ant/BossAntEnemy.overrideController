@@ -6,10 +6,10 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GoblinEnemy 3
+  m_Name: BossAntEnemy
   m_Controller: {fileID: 9100000, guid: d094f80151b447b4a872c2e292c3de29, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 275f09c50b75e654880ff388710ed0d2, type: 2}
-    m_OverrideClip: {fileID: -904422976614603858, guid: 5f7e7e1e2cec9494e992bdd6710f4c8b, type: 3}
   - m_OriginalClip: {fileID: 7400000, guid: ad3974667b1e50c4da9acb6ba1afba9a, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ab3db93d7f19ea946837dfb1678bcdfd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e39be26fa6d6f524a8a4d023fac417cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 275f09c50b75e654880ff388710ed0d2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e39be26fa6d6f524a8a4d023fac417cd, type: 2}
