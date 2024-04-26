@@ -59,12 +59,18 @@ public class LevelUp : MonoBehaviour
             Item ranItem = items[ran[index]];
 
             // 3. 만렙 아이템의 경우는 소비아이템으로 대체
-            if (ranItem.level == ranItem.data.damages.Length) {
-                int n = items.Length;
-                items[n-1].gameObject.SetActive(true);
-                // .. items[Random.Range(4, 7)].gameObject.SetActive(true);
-                // .. 소비 아이템이 더 있다면 위와 같이 범위 지정해서 할 수 있음.
+            if (ranItem.level == ranItem.data.damages.Length)
+{
+                for (int i = items.Length - 1; i >= 0; i--)
+                {
+                    if (items[i].data.itmeId == 99)
+                    {
+                        items[i].gameObject.SetActive(true);
+                        break;
+                    }
+                }
             }
+
             else {
                 ranItem.gameObject.SetActive(true);
             }
