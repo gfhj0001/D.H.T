@@ -38,8 +38,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Range:
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
                 break;
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
+            case ItemData.ItemType.Gem:
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100);
                 break;
             default:
@@ -71,8 +70,6 @@ public class Item : MonoBehaviour
                 }
                 level++;
                 break;
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
             case ItemData.ItemType.Gem:
                 if (level == 0) {
                     GameObject newGear = new GameObject();

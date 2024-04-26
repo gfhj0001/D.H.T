@@ -7,7 +7,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
 
-    public enum ItemType { Melee, Range, Glove, Shoe, Gem, Heal }
+    public enum ItemType { Melee, Range, Gem, Heal }
 
     [Header("# Main Info")]
     public ItemType itemType;

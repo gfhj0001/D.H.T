@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12c9e17f06457548868c13b8bf5000f, type: 3}
   m_Name: Item 94
   m_EditorClassIdentifier: 
-  itemType: 4
+  itemType: 2
   itmeId: 94
   itemName: "\uACAC\uACE0\uD568\uC758 \uBCF4\uC11D"
   itemDesc: "\uBC1B\uB294 \uD53C\uD574 \uAC10\uC18C {0}% \uC99D\uAC00"
-  itemIcon: {fileID: 21300000, guid: 938c50a6d3397c34f9d590a3f70692d9, type: 3}
+  itemIcon: {fileID: 21300000, guid: 1e5a00d6a2884154d927f85e1bf838c3, type: 3}
   baseDamage: 0
   baseCount: 0
   damages:
