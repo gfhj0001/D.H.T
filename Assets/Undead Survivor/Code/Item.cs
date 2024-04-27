@@ -58,6 +58,7 @@ public class Item : MonoBehaviour
                     GameObject newWeapon = new GameObject();
                     weapon = newWeapon.AddComponent<Weapon>();
                     weapon.Init(data);
+                    GameManager.instance.itemWeapons.Add(data);
                 } 
                 else {
                     float nextDamage = data.baseDamage;
@@ -75,6 +76,7 @@ public class Item : MonoBehaviour
                     GameObject newGear = new GameObject();
                     gear = newGear.AddComponent<Gear>();
                     gear.Init(data);
+                    GameManager.instance.itemGems.Add(data);
                 }
                 else {
                     float nextRate = data.damages[level];

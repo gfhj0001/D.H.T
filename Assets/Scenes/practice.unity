@@ -12666,17 +12666,17 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 714119718}
+  - {fileID: 1331290933}
   - {fileID: 1522263830}
-  - {fileID: 542225423}
-  - {fileID: 684722445}
+  - {fileID: 731251535}
   - {fileID: 8873450}
   - {fileID: 725874734}
   - {fileID: 697128778}
   - {fileID: 1430168861}
   - {fileID: 133537366}
+  - {fileID: 542225423}
+  - {fileID: 684722445}
   - {fileID: 967442928}
-  - {fileID: 1331290933}
-  - {fileID: 731251535}
   m_Father: {fileID: 843453951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -14057,6 +14057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cb34631aa02f349b9d26ae3e9f84c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textBox: {fileID: 0}
 --- !u!95 &948081001
 Animator:
   serializedVersion: 5
@@ -21483,6 +21484,8 @@ MonoBehaviour:
   gameLevel: 0
   health: 0
   maxHealth: 1000
+  itemWeapons: []
+  itemGems: []
   takedmgnd: 0
   lifeSteal: 0
   level: 0

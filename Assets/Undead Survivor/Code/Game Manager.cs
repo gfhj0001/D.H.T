@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     [Header("# Player Info")]
     public float health;
     public float maxHealth = 100;
-    //health와 maxHealth를 int에서 float로 변경
+    public List<ItemData> itemWeapons = new List<ItemData>(); //획득한 무기를 저장하는 리스트
+    public List<ItemData> itemGems = new List<ItemData>(); //획득한 보석을 저장하는 리스트
     public float takedmgnd; // .. 받는피해감소량 / take damage down ..
     public float lifeSteal;
     public int level;
@@ -38,9 +39,10 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        health = maxHealth / 2;
-        uiLevelUp.Select(0); //임시 스크립트 첫번째 캐릭터 선택
-        Resume();
+
+        health = maxHealth;
+        Stop();
+        uiLevelUp.Select(); //임시 스크립트 첫번째 캐릭터 선택
 
         AudioManager.instance.PlayBgm(true);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
