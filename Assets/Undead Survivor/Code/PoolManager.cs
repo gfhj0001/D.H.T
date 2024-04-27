@@ -1,11 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+
 public class PoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
     List<GameObject>[] pools;
 
+    // 보스 전용 프리팹 인덱스
+    public const int BOSS_PREFAB_INDEX = 1; // 보스 전용 프리팹을 두 번째 위치에 두었다고 가정
 
     void Awake()
     {

@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.5, y: 4.5}
+  m_Size: {x: 4, y: 4.5}
   m_Direction: 0
 --- !u!114 &6011270394313385883
 MonoBehaviour:
@@ -167,7 +167,7 @@ MonoBehaviour:
   health: 0
   maxhealth: 0
   animCon:
-  - {fileID: 22100000, guid: 54712b721729f33438967c35f5c162ad, type: 2}
+  - {fileID: 22100000, guid: 19679811cd2124644b449aa2e05b2cac, type: 2}
   target: {fileID: 0}
 --- !u!114 &8416965317870816519
 MonoBehaviour:
@@ -191,7 +191,7 @@ Animator:
   m_GameObject: {fileID: 3063072805486903131}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d094f80151b447b4a872c2e292c3de29, type: 2}
+  m_Controller: {fileID: 22100000, guid: 19679811cd2124644b449aa2e05b2cac, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
