@@ -1090,6 +1090,7 @@ MonoBehaviour:
   - {fileID: 1862675720181712372, guid: a8e7536bf40382b44a010a44e071f99c, type: 3}
   - {fileID: 3619678938641691000, guid: 3a951c9acc592934baf0155e582db403, type: 3}
   - {fileID: 3619678938641691000, guid: 80ee87d43729da345b5265f1c7225dd7, type: 3}
+  - {fileID: 3063072805486903131, guid: 4306fe1ebbd7dc24aa21db634988c598, type: 3}
 --- !u!4 &210477384
 Transform:
   m_ObjectHideFlags: 0
@@ -19620,6 +19621,7 @@ GameObject:
   - component: {fileID: 1147858242}
   - component: {fileID: 1147858244}
   - component: {fileID: 1147858243}
+  - component: {fileID: 1147858245}
   m_Layer: 0
   m_Name: EnemyCleaner
   m_TagString: Bullet
@@ -19701,6 +19703,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1000, y: 1000}
   m_EdgeRadius: 0
+--- !u!50 &1147858245
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147858241}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1165804903
 GameObject:
   m_ObjectHideFlags: 0

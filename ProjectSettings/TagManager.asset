@@ -8,6 +8,8 @@ TagManager:
   - Area
   - Enemy
   - Bullet
+  - Boss
+  - MidBoss
   layers:
   - Default
   - TransparentFX
