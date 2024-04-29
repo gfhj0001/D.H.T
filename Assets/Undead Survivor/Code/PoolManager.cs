@@ -7,9 +7,9 @@ public class PoolManager : MonoBehaviour
     public GameObject[] prefabs;
     List<GameObject>[] pools;
 
-    // º¸½º Àü¿ë ÇÁ¸®ÆÕ ÀÎµ¦½º
-    public const int BOSS_PREFAB_INDEX = 1; // º¸½º Àü¿ë ÇÁ¸®ÆÕÀ» µÎ ¹øÂ° À§Ä¡¿¡ µÎ¾ú´Ù°í °¡Á¤
-
+     // ë³´ìŠ¤ ì „ìš© í”„ë¦¬íŒ¹ ì¸ë±ìŠ¤
+ public const int BOSS_PREFAB_INDEX = 1; // ë³´ìŠ¤ ì „ìš© í”„ë¦¬íŒ¹ì„ 2 ë²ˆì§¸ ìœ„ì¹˜ì— ë‘ì—ˆë‹¤ê³  ê°€ì •
+ public const int MID_BOSS_PREFAB_INDEX = 6; // ì¤‘ê°„ ë³´ìŠ¤ ì „ìš© í”„ë¦¬íŒ¹ì„ 6 ë²ˆì§¸ ìœ„ì¹˜ì— ë‘ì—ˆë‹¤ê³  ê°€ì •
     void Awake()
     {
         pools = new List<GameObject>[prefabs.Length];

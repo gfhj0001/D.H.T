@@ -101,6 +101,12 @@ public class Enemy : MonoBehaviour
             if (GameManager.instance.isLive)
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
 
+            // 태그가 "MidBoss"인 몬스터가 죽었을 때 경험치 획득  -- 반지 획득으로 변경예정
+            if (gameObject.tag == "MidBoss")
+            {
+                GameManager.instance.GetExp();
+            }
+
             // 태그가 "Boss"인 몬스터가 죽었을 때만 게임 승리
             if (gameObject.tag == "Boss")
             {

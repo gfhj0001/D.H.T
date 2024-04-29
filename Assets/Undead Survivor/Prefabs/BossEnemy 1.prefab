@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 115982780306838032}
   - component: {fileID: 6011270394313385883}
   - component: {fileID: 8416965317870816519}
-  - component: {fileID: -2746234653752939370}
+  - component: {fileID: -2283907669178267306}
   m_Layer: 6
   m_Name: BossEnemy 1
-  m_TagString: Boss
+  m_TagString: MidBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 3b2c4905f44762243992403b97e18320, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7bdaca668ece7f54c80b50785f079649, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,8 +148,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.3, y: 0.4}
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 2, y: 2.3}
   m_Direction: 0
 --- !u!114 &6011270394313385883
 MonoBehaviour:
@@ -167,7 +167,7 @@ MonoBehaviour:
   health: 0
   maxhealth: 0
   animCon:
-  - {fileID: 22100000, guid: 54712b721729f33438967c35f5c162ad, type: 2}
+  - {fileID: 22100000, guid: d5ba97370099da845baa6f7442c1aaf4, type: 2}
   target: {fileID: 0}
 --- !u!114 &8416965317870816519
 MonoBehaviour:
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &-2746234653752939370
+--- !u!95 &-2283907669178267306
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -191,9 +191,9 @@ Animator:
   m_GameObject: {fileID: 3063072805486903131}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d094f80151b447b4a872c2e292c3de29, type: 2}
+  m_Controller: {fileID: 22100000, guid: d5ba97370099da845baa6f7442c1aaf4, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 1
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
