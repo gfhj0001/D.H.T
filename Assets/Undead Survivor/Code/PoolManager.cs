@@ -6,13 +6,8 @@ public class PoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
     List<GameObject>[] pools;
-
-    // PoolManager에 있는 enemy 1의 요소를 가져와서 적용
-    public const int BOSS_PREFAB_INDEX = 1;
-
-     // 보스 전용 프리팹 인덱스
- public const int BOSS_PREFAB_INDEX = 1; // 보스 전용 프리팹을 2 번째 위치에 두었다고 가정
- public const int MID_BOSS_PREFAB_INDEX = 6; // 중간 보스 전용 프리팹을 6 번째 위치에 두었다고 가정
+    public const int BOSS_PREFAB_INDEX = 1; // 보스 전용 프리팹을 2 번째 위치에 두었다고 가정
+    public const int MID_BOSS_PREFAB_INDEX = 6; // 중간 보스 전용 프리팹을 6 번째 위치에 두었다고 가정
     void Awake()
     {
         pools = new List<GameObject>[prefabs.Length];
