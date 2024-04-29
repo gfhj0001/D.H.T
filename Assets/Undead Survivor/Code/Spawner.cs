@@ -10,10 +10,10 @@ public class Spawner : MonoBehaviour
     int level;
     float timer;
 
-    public const float BOSS_SPAWN_TIME = 5.0f; // ¿¹¸¦ µé¾î, 60ÃÊ ÈÄ¿¡ º¸½º ¸ó½ºÅÍ¸¦ ½ºÆùÇÏ·Á¸é ÀÌ °ªÀ» 60.0f·Î ¼³Á¤ÇÕ´Ï´Ù.
-    public const int BOSS_HEALTH = 1000; // º¸½ºÀÇ Ã¼·ÂÀ» 1000À¸·Î ¼³Á¤
-    public const float BOSS_SPEED = 5.0f; // º¸½ºÀÇ ÀÌµ¿¼Óµµ¸¦ 5.0À¸·Î ¼³Á¤
-    private bool bossSpawned = false;
+    public const float BOSS_SPAWN_TIME = 5.0f; // 5ì´ˆ í›„ ë³´ìŠ¤ê°€ ìŠ¤í°ë¨. 
+    public const int BOSS_HEALTH = 1000; // ë³´ìŠ¤ ì²´ë ¥
+    public const float BOSS_SPEED = 5.0f; // ë³´ìŠ¤ ì´ë™ ì†ë„
+    private bool bossSpawned = false; //ë³´ìŠ¤ì˜ ìƒì¡´ ì—¬ë¶€
 
     void Awake()
     {
@@ -35,12 +35,12 @@ public class Spawner : MonoBehaviour
             Spawn();
         }
 
-        // º¸½º ¸ó½ºÅÍ ½ºÆù ·ÎÁ÷
-        if (!bossSpawned && GameManager.instance.gameTime >= BOSS_SPAWN_TIME)
-        {
-            SpawnBoss();
-            bossSpawned = true; // º¸½º°¡ ½ºÆùµÇ¾úÀ½À» Ç¥½Ã
-        }
+        // 
+        // if (!bossSpawned && GameManager.instance.gameTime >= BOSS_SPAWN_TIME)
+        // {
+        //     SpawnBoss();
+        //     bossSpawned = true; // 
+        // }
     }
 
     void Spawn()
@@ -53,14 +53,14 @@ public class Spawner : MonoBehaviour
         void SpawnBoss()
         {
             GameObject boss = GameManager.instance.Pool.Get(PoolManager.BOSS_PREFAB_INDEX);
-            boss.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+            boss.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position; //ì§€ì •í•´ì„œ í•˜ë©´ ì¢‹ì„ã…¡ã„·ã……?
 
-            // º¸½ºÀÇ ¼Ó¼ºÀ» Á÷Á¢ ¼³Á¤
+            // 
             Enemy bossEnemy = boss.GetComponent<Enemy>();
             bossEnemy.health = BOSS_HEALTH;
             bossEnemy.speed = BOSS_SPEED;
 
-            // ÇÊ¿äÇÑ °æ¿ì Ãß°¡ÀûÀÎ º¸½º Àü¿ë ¼Ó¼ºÀ» ¿©±â¿¡¼­ ¼³Á¤ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+            // 
         }
     }
 [System.Serializable]

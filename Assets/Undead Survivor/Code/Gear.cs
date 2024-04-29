@@ -63,7 +63,7 @@ public class Gear : MonoBehaviour
     }
     void Healthup()
     {
-        float increasedMaxHealth = GameManager.instance.maxHealth * rate;
+        float increasedMaxHealth = 1000 * rate; //게임 시작시 최대 체력에서 증가.
         GameManager.instance.maxHealth += increasedMaxHealth;
         GameManager.instance.health += increasedMaxHealth;
         //최대 체력이 늘어난만큼 현재 체력도 늘어남.

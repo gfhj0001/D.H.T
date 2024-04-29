@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
     public float[] array_speed = {};
 
 
+
+
     float timer;
     Player player;
 
@@ -65,16 +67,14 @@ public class Weapon : MonoBehaviour
         this.damage = damage;
         this.count += count;
 
-
-
         switch (id) {
             case 0:
                 Batch_sheild();
-                player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+                // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
                 break;
             case 1: 
                 Batch_hammer();
-                player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+                // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
                 break;
             case 3:
                 switch (count) { //단검 레벨업시 공속 증가 로직.
@@ -109,7 +109,6 @@ public class Weapon : MonoBehaviour
         id = data.itmeId;
         damage = data.baseDamage;
         count = data.baseCount;
-
         
         for (int index=0; index < GameManager.instance.Pool.prefabs.Length; index++) {
             if (data.projectile == GameManager.instance.Pool.prefabs[index]) {
@@ -118,13 +117,11 @@ public class Weapon : MonoBehaviour
             }
         }
 
-
-
-
         switch (id) {
             case 0: //방패
                 speed_sheild = -150;
                 Batch_sheild();
+                
                 break;
             case 1: //망치
                 speed_hammer = 100;
@@ -138,7 +135,7 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
-        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+        // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
 
     }
 

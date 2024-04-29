@@ -1,49 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+
 
 public class LevelUp : MonoBehaviour
 {
-    RectTransform rect;
     Item[] items;
-    public Text textBox;
+    RectTransform rect;
+    RectTransform weaponRect;
+    RectTransform gemRect;
+    public Image[] weaponImage = new Image [3];
+    ItemData[] changedWeaponImage = new ItemData[3];
+
+    int num1 = 0;
+    int num2 = 0;
+    public Image[] gemImage = new Image [3];
+    ItemData[] changedGemImage = new ItemData[3];
+
+
+    RectTransform selectTextBox;
+    RectTransform levelTextBox;
 
 
     void Awake()
     {
         rect = GetComponent<RectTransform>();
+        weaponRect = GameObject.Find("Weapon Panel").GetComponent<RectTransform>();
+        gemRect = GameObject.Find("Gem Panel").GetComponent<RectTransform>();
         items = GetComponentsInChildren<Item>(true);
-        textBox = GameObject.Find("Text Title").GetComponent<Text>();
-    }
-
-    public void Show()
-    {
-        
-        Next();
-        rect.localScale = Vector3.one;
-        GameManager.instance.Stop();
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
-        AudioManager.instance.EffectBgm(true);
-    }
-
-    public void Hide()
-    {
-        rect.localScale = Vector3.zero;
-        GameManager.instance.Resume();
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
-        AudioManager.instance.EffectBgm(false);
+        selectTextBox = GameObject.Find("Select Text Title").GetComponent<RectTransform>();
+        levelTextBox = GameObject.Find("Level Text Title").GetComponent<RectTransform>();
+        weaponImage[0] = GameObject.Find("Weapon Image 1").GetComponent<Image>();
+        weaponImage[1] = GameObject.Find("Weapon Image 2").GetComponent<Image>();
+        weaponImage[2] = GameObject.Find("Weapon Image 3").GetComponent<Image>();
+        gemImage[0] = GameObject.Find("Gem Image 1").GetComponent<Image>();
+        gemImage[1] = GameObject.Find("Gem Image 2").GetComponent<Image>();
+        gemImage[2] = GameObject.Find("Gem Image 3").GetComponent<Image>();
     }
 
     public void Select()
     {
-
-        textBox.text = "무기를 선택해주세요.";
-
         rect.localScale = Vector3.one;
+        levelTextBox.localScale = Vector3.zero;
+        weaponRect.localScale = Vector3.zero;
+        gemRect.localScale = Vector3.zero;
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.instance.EffectBgm(true);
 
@@ -69,9 +71,28 @@ public class LevelUp : MonoBehaviour
         }
     }
 
-    void Next() {
-        textBox.text = "레벨이 상승했습니다.";
+    public void Show()
+    {
+        Next();
+        rect.localScale = Vector3.one;
+        selectTextBox.localScale= Vector3.zero;
+        levelTextBox.localScale = Vector3.one;
+        weaponRect.localScale = Vector3.one;
+        gemRect.localScale = Vector3.one;
+        GameManager.instance.Stop();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
+        AudioManager.instance.EffectBgm(true);
+    }
 
+    public void Hide()
+    {
+        rect.localScale = Vector3.zero;
+        GameManager.instance.Resume();
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+        AudioManager.instance.EffectBgm(false);
+    }
+
+    void Next() {
         // 1. 모든 아이템 비활성화
         foreach (Item item in items)
         {
@@ -83,7 +104,7 @@ public class LevelUp : MonoBehaviour
         ItemData[] weaponData = new ItemData[3];
         ItemData[] gemData = new ItemData[3];
 
-        if (GameManager.instance.itemWeapons.Count > 0) {
+        if (GameManager.instance.itemWeapons.Count > 0) { //
             for (int i = 0; i < GameManager.instance.itemWeapons.Count; i++) 
             {
             weaponData[i] = GameManager.instance.itemWeapons[i];
@@ -98,18 +119,72 @@ public class LevelUp : MonoBehaviour
         }
 
 
+        for(int index = 0; index < 3; index++) {
+            foreach (Item item in items) {
+                if (item.data == weaponData[index]) {
+                    if(changedWeaponImage[index] == weaponData[index]){
+                        break;
+                    }
+                    ChangeWpnSprite(item);
+
+                }
+            }
+        }
+
+        for(int index = 0; index < 3; index++) {
+            foreach (Item item in items) {
+                if (item.data == gemData[index]) {
+                    if(changedGemImage[index] == gemData[index]){
+                        break;
+                    }
+                    ChangeGemSprite(item);
+                }
+            }
+        }
+
+        void ChangeWpnSprite(Item item) {
+
+            if (num1 == 0) {
+                weaponImage[0].sprite = item.data.itemIcon;
+                changedWeaponImage[0] = item.data;
+                num1++;
+            } else if (num1 == 1) {
+                weaponImage[1].sprite = item.data.itemIcon;
+                changedWeaponImage[1] = item.data;
+                num1++;
+            } else if (num1 == 2) {
+                weaponImage[2].sprite = item.data.itemIcon;
+                changedWeaponImage[2] = item.data;
+                num1++;
+            }
+            
+        }
+
+        void ChangeGemSprite(Item item) {
+
+            if (num2 == 0) {
+                gemImage[0].sprite = item.data.itemIcon;
+                changedGemImage[0] = item.data;
+            } else if (num2 == 1) {
+                gemImage[1].sprite = item.data.itemIcon;
+                changedGemImage[1] = item.data;
+            } else if (num2 == 2) {
+                gemImage[2].sprite = item.data.itemIcon;
+                changedGemImage[2] = item.data;
+            }
+            num2++;
+        }
+
+
         // 3. 만렙이 아닌 아이템을 활성화할 리스트에 추가
         int selected = 0;
-        Debug.Log("==============================================");
         if (GameManager.instance.itemGems.Count == 3 && GameManager.instance.itemWeapons.Count == 3) { //무기와 보석을 이미 3개씩 선택 했을때
-            Debug.Log("무기와 보석을 이미 3개씩 선택 했을때");
             foreach (Item item in items) {
                 if (item.data.itmeId == 99) {
                     activeItems.Add(item);
                 }
                 for(int i = 0; i < 3; i++) {
                     if (item.data == weaponData[i] && item.level < item.data.damages.Length) {
-                        Debug.Log("무기만 3개를 선택했을 때 무기가 추가됨.");
                         activeItems.Add(item);
                     }
                     if (item.data == gemData[i] && item.level < item.data.damages.Length) {
@@ -119,11 +194,9 @@ public class LevelUp : MonoBehaviour
             }
             
         } else if (GameManager.instance.itemWeapons.Count == 3) { //무기만 3개를 선택했을 때
-            Debug.Log("무기만 3개를 선택했을 때");
             foreach (Item item in items) {
                 for(int i = 0; i < GameManager.instance.itemWeapons.Count; i++) {
                     if (item.data == weaponData[i] && item.level < item.data.damages.Length) {
-                        Debug.Log("무기만 3개를 선택했을 때 무기가 추가됨.");
                         activeItems.Add(item);
                     }
                 }
@@ -134,22 +207,18 @@ public class LevelUp : MonoBehaviour
                     if (item.data == gemData[i] && item.level < item.data.damages.Length) {
                         activeItems.Add(item);
                         selected = 1;
-                        Debug.Log($"{item}, 추가된 보석");
                         break;
                     } else if (item.data == gemData[i] && item.level == item.data.damages.Length) {
-                        Debug.Log("보석이 만렙이라 추가되지 않았음");
                         break;
                     }
                 }
                 if (item.level < item.data.damages.Length && selected == 0) {
                     if(item.data.itemType == ItemData.ItemType.Gem) {
                         activeItems.Add(item);
-                        Debug.Log($" {item}, 선택한적 없는 보석이 추가됨.");
                     }
                 }
             }
         } else if (GameManager.instance.itemGems.Count == 3) { //보석만 3개를 선택했을때
-            Debug.Log("보석만 3개를 선택했을때");
             foreach (Item item in items) {
                 for(int i = 0; i < GameManager.instance.itemWeapons.Count; i++) {
                     if (item.data == gemData[i] && item.level < item.data.damages.Length) {
@@ -163,10 +232,8 @@ public class LevelUp : MonoBehaviour
                     if(item.data == weaponData[i] && item.level < item.data.damages.Length){
                         activeItems.Add(item);
                         selected = 1;
-                        Debug.Log($"{item}, 추가된 무기");
                         break;
                     } else if (item.data == weaponData[i] && item.level == item.data.damages.Length) {
-                        Debug.Log("무기가 만렙이라 추가되지 않았음");
                         break;
                     }
                 }
@@ -174,12 +241,10 @@ public class LevelUp : MonoBehaviour
                 if (item.level < item.data.damages.Length && selected == 0) {
                     if ((item.data.itemType == ItemData.ItemType.Melee) || (item.data.itemType == ItemData.ItemType.Range)) {
                         activeItems.Add(item);
-                        Debug.Log($" {item}, 선택한적 없는 무기가 추가됨.");
                     }
                 }
             }
         } else { //선택한 무기와 보석이 각각 3개가 되지 않을때
-            Debug.Log("선택한 무기와 보석이 각각 3개가 되지 않을때");
             foreach (Item item in items) {   
             selected = 0;
             //기존에 선택했던 무기를 리스트에 추가하는 로직
@@ -187,20 +252,16 @@ public class LevelUp : MonoBehaviour
                     if(item.data == weaponData[i] && item.level < item.data.damages.Length){
                         activeItems.Add(item);
                         selected = 1;
-                        Debug.Log($"{item}, 추가된 무기");
                         break;
                     } else if (item.data == weaponData[i] && item.level == item.data.damages.Length) {
-                        Debug.Log("무기가 만렙이라 추가되지 않았음");
                         break;
                     }
 
                     if (item.data == gemData[i] && item.level < item.data.damages.Length) {
                         activeItems.Add(item);
                         selected = 1;
-                        Debug.Log($"{item}, 추가된 보석");
                         break;
                     } else if (item.data == gemData[i] && item.level == item.data.damages.Length) {
-                        Debug.Log("보석이 만렙이라 추가되지 않았음");
                         break;
                     }
                 }
@@ -208,17 +269,14 @@ public class LevelUp : MonoBehaviour
                 if (item.level < item.data.damages.Length && selected == 0) {
                     if ((item.data.itemType == ItemData.ItemType.Melee) || (item.data.itemType == ItemData.ItemType.Range)) {
                         activeItems.Add(item);
-                        Debug.Log($" {item}, 선택한적 없는 무기가 추가됨.");
                     }
                     if(item.data.itemType == ItemData.ItemType.Gem) {
                         activeItems.Add(item);
-                        Debug.Log($" {item}, 선택한적 없는 보석이 추가됨.");
                     }
                 }
             }
         }
         
-        Debug.Log("==============================================");
 
         // 4. 활성화할 아이템이 3개보다 적을 경우, 맥주 아이템 추가
         while (activeItems.Count < 3)
@@ -236,7 +294,6 @@ public class LevelUp : MonoBehaviour
         if (activeItems[0].data.itmeId == 99 && activeItems[1].data.itmeId == 99 && activeItems[2].data.itmeId == 99) {
             for (int i = 0; i < 3; i++) {
             activeItems[i].gameObject.SetActive(true);
-            Debug.Log($"{activeItems[i]}, 모두 만렙이라 맥주만 선택가능함.");
             }
         } else {
             int[] ran = new int[3];
@@ -248,16 +305,10 @@ public class LevelUp : MonoBehaviour
                 if (ran[0] != ran[1] && ran[1] != ran[2] && ran[0] != ran[2])
                     break;
             }
-            Debug.Log("==============================================");
-            Debug.Log($"{ran[0]}, 0번째");
-            Debug.Log($"{ran[1]}, 1번째");
-            Debug.Log($"{ran[2]}, 2번째");
 
             for (int i = 0; i < 3; i++) {
                 activeItems[ran[i]].gameObject.SetActive(true);
-                Debug.Log($"{activeItems[ran[i]]}, 출력하는 아이템.");
             }
-            Debug.Log("==============================================");    
         }
     }
 }

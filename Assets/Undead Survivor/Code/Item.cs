@@ -12,7 +12,7 @@ public class Item : MonoBehaviour
     public Weapon weapon;
     public Gear gear;
 
-    Image icon;
+    public Image icon;
     Text textLevel;
     Text textName;
     Text textDesc;

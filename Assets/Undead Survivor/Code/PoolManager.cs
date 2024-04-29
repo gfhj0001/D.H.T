@@ -7,8 +7,8 @@ public class PoolManager : MonoBehaviour
     public GameObject[] prefabs;
     List<GameObject>[] pools;
 
-    // º¸½º Àü¿ë ÇÁ¸®ÆÕ ÀÎµ¦½º
-    public const int BOSS_PREFAB_INDEX = 1; // º¸½º Àü¿ë ÇÁ¸®ÆÕÀ» µÎ ¹øÂ° À§Ä¡¿¡ µÎ¾ú´Ù°í °¡Á¤
+    // PoolManagerì— ìˆëŠ” enemy 1ì˜ ìš”ì†Œë¥¼ ê°€ì ¸ì™€ì„œ ì ìš©
+    public const int BOSS_PREFAB_INDEX = 1;
 
     void Awake()
     {
