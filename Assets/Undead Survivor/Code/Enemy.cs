@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
 
         float currentHealth = GameManager.instance.health;
 
-        if(!collision.CompareTag("Bullet") || !isLive) //충돌한게 Bullet인지 검사함.
+        if (!collision.CompareTag("Bullet") || !isLive) //충돌한게 Bullet인지 검사함.
             return;
 
         health -= collision.GetComponent<Bullet>().damage;
@@ -83,11 +83,13 @@ public class Enemy : MonoBehaviour
 
         StartCoroutine(KnockBack()); //코루틴 호출하는 법 혹은 StartCoroutine("KnockBack");
 
-        if (health > 0){
+        if (health > 0)
+        {
             anim.SetTrigger("Hit");
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
         }
-        else {
+        else
+        {
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;
@@ -98,10 +100,14 @@ public class Enemy : MonoBehaviour
 
             if (GameManager.instance.isLive)
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+
+            // 태그가 "Boss"인 몬스터가 죽었을 때만 게임 승리
+            if (gameObject.tag == "Boss")
+            {
+                GameManager.instance.GameVictory();
+            }
         }
     }
-
-
     IEnumerator KnockBack() //코루틴함수 생명주기나 비동기로 작동함
     {
         yield return wait; //코루틴의 반환, 다음 하나의 물리 프레임 딜레이
