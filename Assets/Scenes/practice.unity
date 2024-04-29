@@ -978,6 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 3063072805486903131, guid: 55b28c1d67b6b754b82fa059e859b297, type: 3}
+  - {fileID: 3063072805486903131, guid: 2c66b9b1140e0cd4abfbe9e1cca79180, type: 3}
   - {fileID: 1862675720181712372, guid: df6cc35da519df644939a29bdf3ed4ea, type: 3}
   - {fileID: 1862675720181712372, guid: a8e7536bf40382b44a010a44e071f99c, type: 3}
   - {fileID: 3619678938641691000, guid: 3a951c9acc592934baf0155e582db403, type: 3}
