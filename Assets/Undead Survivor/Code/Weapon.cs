@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
     public float speed_hammer;
     public float[] array_speed = {};
 
-
+    public float speed_Anvil; //모루
 
 
     float timer;
@@ -58,7 +58,17 @@ public class Weapon : MonoBehaviour
                     Fire_knife();
                 }
                 break;
-        }
+            case 4: // 모루
+                timer += Time.deltaTime;
+
+                if (timer > speed_Anvil)
+                {
+                    timer = 0f;
+                    Fire_Anvil();
+                }
+                break;
+        
+    }
 
     }
 
@@ -95,6 +105,9 @@ public class Weapon : MonoBehaviour
                         speed_knife = speed_knife * (1f - 0.35f);
                         break;
                 }
+                break;
+            case 4: // 모루
+                speed_Anvil = 0.5f; // 예시 값입니다. 실제 게임에서는 적절한 값을 설정해야 합니다.
                 break;
         }
 
@@ -136,6 +149,9 @@ public class Weapon : MonoBehaviour
                 break;
             case 3: //단검 랜덤한 방향으로 날아감.
                 speed_knife = 0.6f; // 1.2초에 2발 발사.
+                break;
+            case 4: // 모루
+                speed_Anvil = 1f; 
                 break;
         }
 
@@ -231,4 +247,27 @@ public class Weapon : MonoBehaviour
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
+    void Fire_Anvil() //모루의 공격방식 
+    {
+        if (!player.scanner.nearestTarget)
+            return;
+
+        // 목표 방향 계산
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dirToTarget = (targetPos - transform.position).normalized;
+
+        // 위쪽 방향 설정
+        Vector3 upDir = Vector3.up;
+
+        // 위쪽 방향과 적을 향한 방향 사이의 중간 방향 계산
+        Vector3 dir = Vector3.Lerp(upDir, dirToTarget, 0.5f).normalized;
+
+        Transform Anvil = GameManager.instance.Pool.Get(prefabId).transform;
+        Anvil.position = transform.position;
+        Anvil.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 방향을 중간 방향으로 설정
+        Anvil.GetComponent<Bullet>().Init(damage, count, dir); // 스틸볼에게 방향 설정
+
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
+    }
+
 }

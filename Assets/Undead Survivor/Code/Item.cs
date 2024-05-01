@@ -44,30 +44,37 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Range:
 
                 if (GameManager.instance.flagDestroyWeapon == 1) {
-                    if(data.itmeId == 0) { //방패의 id
+                    if (data.itmeId == 0)
+                    { //방패의 id
                         Weapon wpn = GameObject.Find("Weapon 0").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
                         currentCount = wpn.count;
                         textLevel.text = "Lv." + wpn.level;
                         textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개";
                         break;
-                    } else if (data.itmeId == 1) { //망치의 id
+                    }
+                    else if (data.itmeId == 1)
+                    { //망치의 id
                         Weapon wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
-                        currentCount = wpn.count;   
+                        currentCount = wpn.count;
                         textLevel.text = "Lv." + wpn.level;
                         textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개";
                         break;
-                    } else if (data.itmeId == 2) { //창의 id
+                    }
+                    else if (data.itmeId == 2)
+                    { //창의 id
                         Weapon wpn = GameObject.Find("Weapon 2").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
                         currentSpeed = wpn.speed;
                         currentCount = wpn.count;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사"  + "\n" + "관통력 : " + currentCount.ToString();
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : " + currentCount.ToString();
                         break;
-                    } else if (data.itmeId == 3) { //단검의 id
+                    }
+                    else if (data.itmeId == 3)
+                    { //단검의 id
                         Weapon wpn = GameObject.Find("Weapon 3").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
                         currentSpeed = wpn.speed_knife;
@@ -76,7 +83,17 @@ public class Item : MonoBehaviour
                         textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 0";
                         break;
                     }
-                }
+                    else if (data.itmeId == 4)
+                    { //모루의 id
+                        Weapon wpn = GameObject.Find("Weapon 4").GetComponent<Weapon>();
+                        currentDamage = wpn.damage;
+                        currentSpeed = wpn.speed_Anvil;
+                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+                        textLevel.text = "Lv." + wpn.level;
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 99";
+                        break;
+                    }
+                   }
                 textLevel.text = "Lv." + (level + 1);
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
                 break;
@@ -206,7 +223,22 @@ public class Item : MonoBehaviour
                 GameManager.instance.flagDestroyWeapon = 0;
                 GameManager.instance.destroyWeapon = data;
                 break;
-            
+            case 4: // 모루
+                wpn = GameObject.Find("Weapon 4").GetComponent<Weapon>();
+                blt = GameObject.Find("Weapon 4").GetComponentsInChildren<Bullet>(true);
+                foreach (Bullet b in blt)
+                {
+                    b.gameObject.SetActive(false);
+                    Destroy(b);
+                }
+                wpn.gameObject.SetActive(false);
+                Destroy(wpn);
+                rectDestroyPanel.gameObject.SetActive(false);
+                GameManager.instance.itemWeapons.Remove(data);
+                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.destroyWeapon = data;
+                break;
+
         }
     }
 }
