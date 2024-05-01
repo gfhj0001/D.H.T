@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
 {
     public int id;
     public int prefabId;
+    public int level;
     public float damage;
     public int count;
     public float speed;
@@ -97,6 +98,8 @@ public class Weapon : MonoBehaviour
                 break;
         }
 
+        level++;
+
     }
     public void Init(ItemData data)
     {
@@ -109,6 +112,7 @@ public class Weapon : MonoBehaviour
         id = data.itmeId;
         damage = data.baseDamage;
         count = data.baseCount;
+        level = 1;
         
         for (int index=0; index < GameManager.instance.Pool.prefabs.Length; index++) {
             if (data.projectile == GameManager.instance.Pool.prefabs[index]) {
@@ -162,7 +166,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-        void Batch_hammer()
+    void Batch_hammer()
     {
         for (int index=0; index < count; index++){
             Transform bullet;

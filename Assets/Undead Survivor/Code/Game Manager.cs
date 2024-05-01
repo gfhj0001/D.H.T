@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float gameTime;
     public float maxGameTime = 2 * 10f;
     public int gameLevel;
+    public int flagDestroyWeapon = 0; //무기 파괴 플래그
     [Header("# Player Info")]
     public float health;
     public float maxHealth = 100;

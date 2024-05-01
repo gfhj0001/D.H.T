@@ -4,18 +4,28 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class LevelUp : MonoBehaviour
 {
+
     Item[] items;
+    Item[] destroyItems;
+
     RectTransform rect;
+
+    RectTransform rectSelectPanel;
+    RectTransform rectDestroyPanel;
+    RectTransform rectCheckPanel;
+
     RectTransform weaponRect;
     RectTransform gemRect;
+    RectTransform destroyButton;
     public Image[] weaponImage = new Image [3];
     ItemData[] changedWeaponImage = new ItemData[3];
 
     int num1 = 0;
     int num2 = 0;
+
+
     public Image[] gemImage = new Image [3];
     ItemData[] changedGemImage = new ItemData[3];
 
@@ -27,9 +37,19 @@ public class LevelUp : MonoBehaviour
     void Awake()
     {
         rect = GetComponent<RectTransform>();
+
+        rectSelectPanel = GameObject.Find("Select Panel").GetComponent<RectTransform>();
+        rectDestroyPanel = GameObject.Find("Destroy Panel").GetComponent<RectTransform>();
+        rectCheckPanel = GameObject.Find("Check Panel").GetComponent<RectTransform>();
+
+
         weaponRect = GameObject.Find("Weapon Panel").GetComponent<RectTransform>();
         gemRect = GameObject.Find("Gem Panel").GetComponent<RectTransform>();
-        items = GetComponentsInChildren<Item>(true);
+        destroyButton = GameObject.Find("Destroy Weapon Button").GetComponent<RectTransform>();
+
+        items = GameObject.Find("ItemGroup").GetComponentsInChildren<Item>(true);
+        destroyItems = GameObject.Find("Destory ItemGroup").GetComponentsInChildren<Item>(true);
+
         selectTextBox = GameObject.Find("Select Text Title").GetComponent<RectTransform>();
         levelTextBox = GameObject.Find("Level Text Title").GetComponent<RectTransform>();
         weaponImage[0] = GameObject.Find("Weapon Image 1").GetComponent<Image>();
@@ -40,12 +60,13 @@ public class LevelUp : MonoBehaviour
         gemImage[2] = GameObject.Find("Gem Image 3").GetComponent<Image>();
     }
 
-    public void Select()
+    public void Select() //시작 무기 선택 로직
     {
         rect.localScale = Vector3.one;
         levelTextBox.localScale = Vector3.zero;
         weaponRect.localScale = Vector3.zero;
         gemRect.localScale = Vector3.zero;
+        destroyButton.localScale = Vector3.zero;
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.instance.EffectBgm(true);
 
@@ -79,6 +100,9 @@ public class LevelUp : MonoBehaviour
         levelTextBox.localScale = Vector3.one;
         weaponRect.localScale = Vector3.one;
         gemRect.localScale = Vector3.one;
+        destroyButton.localScale = Vector3.one;
+        
+        
         GameManager.instance.Stop();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.instance.EffectBgm(true);
@@ -310,5 +334,69 @@ public class LevelUp : MonoBehaviour
                 activeItems[ran[i]].gameObject.SetActive(true);
             }
         }
+    }
+
+    public void OnClick_DestroyButton() 
+    {
+        GameManager.instance.flagDestroyWeapon = 1;
+
+        rectSelectPanel.gameObject.SetActive(false);
+
+        rectSelectPanel.localScale = Vector3.zero;
+        rectDestroyPanel.localScale = Vector3.one;
+
+        ShowDestroyWeaponList();
+
+        
+    }
+
+    void ShowDestroyWeaponList()
+    {
+        foreach(Item dstList in destroyItems)
+        {
+            dstList.gameObject.SetActive(false);
+        }
+
+        List<Item> activeItems = new List<Item>();
+        ItemData[] weaponData = new ItemData[3];
+
+        if (GameManager.instance.itemWeapons.Count > 0) {
+            for (int i = 0; i < GameManager.instance.itemWeapons.Count; i++) 
+            {
+            weaponData[i] = GameManager.instance.itemWeapons[i];
+            }
+        }
+
+        for(int index = 0; index < 3; index++) {
+            Item tmp;
+            foreach (Item dstList in destroyItems) {
+                if (dstList.data == weaponData[index]) {
+                    tmp = dstList;
+                    foreach(Item item in items) {
+                        if (tmp.data.itmeId == item.data.itmeId) 
+                        {
+                            tmp.textName = item.textName;
+                            tmp.textDesc = item.textDesc;
+
+                            activeItems.Add(tmp);
+                        }
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < activeItems.Count; i++) {
+            activeItems[i].gameObject.SetActive(true);
+        }
+
+    }
+
+    public void OnClick_PreviousButton() {
+        GameManager.instance.flagDestroyWeapon = 0;
+
+        rectSelectPanel.gameObject.SetActive(true);
+
+        rectSelectPanel.localScale = Vector3.one;
+        rectDestroyPanel.localScale = Vector3.zero;
     }
 }

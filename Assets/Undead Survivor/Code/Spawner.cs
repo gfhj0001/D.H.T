@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     public const int BOSS_HEALTH = 1000; // 보스 체력
     public const float BOSS_SPEED = 5.0f; // 보스 이동 속도
     private bool bossSpawned = false; //보스의 생존 여부
-    public const float MID_BOSS_SPAWN_TIME = 30.0f; // 예를 들어, 30초 후에 중간 보스를 스폰하려면 이 값을 30.0f로 설정합니다.
+    public const float MID_BOSS_SPAWN_TIME = 20.0f; // 예를 들어, 30초 후에 중간 보스를 스폰하려면 이 값을 30.0f로 설정합니다.
     public const int MID_BOSS_HEALTH = 500; // 중간 보스의 체력을 500으로 설정
     public const float MID_BOSS_SPEED = 3.0f; // 중간 보스의 이동속도를 3.0으로 설정
     private bool midBossSpawned = false;
