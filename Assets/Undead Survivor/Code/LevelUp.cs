@@ -20,18 +20,13 @@ public class LevelUp : MonoBehaviour
     RectTransform gemRect;
     RectTransform destroyButton;
     public Image[] weaponImage = new Image [3];
-    ItemData[] changedWeaponImage = new ItemData[3];
-
-    int num1 = 0;
-    int num2 = 0;
-
-
     public Image[] gemImage = new Image [3];
-    ItemData[] changedGemImage = new ItemData[3];
-
 
     RectTransform selectTextBox;
     RectTransform levelTextBox;
+
+    public Sprite uiSprite;
+    public Sprite[] iconSprite;
 
 
     void Awake()
@@ -41,7 +36,6 @@ public class LevelUp : MonoBehaviour
         rectSelectPanel = GameObject.Find("Select Panel").GetComponent<RectTransform>();
         rectDestroyPanel = GameObject.Find("Destroy Panel").GetComponent<RectTransform>();
         rectCheckPanel = GameObject.Find("Check Panel").GetComponent<RectTransform>();
-
 
         weaponRect = GameObject.Find("Weapon Panel").GetComponent<RectTransform>();
         gemRect = GameObject.Find("Gem Panel").GetComponent<RectTransform>();
@@ -94,6 +88,9 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
+        rectSelectPanel.gameObject.SetActive(true);
+        rectDestroyPanel.gameObject.SetActive(false);
+        rectSelectPanel.localScale = Vector3.one;
         Next();
         rect.localScale = Vector3.one;
         selectTextBox.localScale= Vector3.zero;
@@ -117,10 +114,19 @@ public class LevelUp : MonoBehaviour
     }
 
     void Next() {
-        // 1. 모든 아이템 비활성화
+        // 1. 모든 아이템 비활성화 + 선택한 아이템 아이콘 초기화 + 무기 파괴 버튼 활성화 유무 확인
         foreach (Item item in items)
         {
             item.gameObject.SetActive(false);
+        }
+
+        for (int index = 0; index < 3; index++) {
+            weaponImage[index].sprite = uiSprite;
+            gemImage[index].sprite = uiSprite;
+        }
+
+        if (GameManager.instance.destroyWeapon != null) {
+            destroyButton.gameObject.SetActive(false);
         }
 
         // 2. 활성화할 아이템 리스트
@@ -142,63 +148,24 @@ public class LevelUp : MonoBehaviour
             }
         }
 
+        for(int index = 0; index < GameManager.instance.itemWeapons.Count; index++) {
+            foreach (Sprite sprite in iconSprite) {
+                if (sprite == GameManager.instance.itemWeapons[index].itemIcon) {
+                    weaponImage[index].sprite = sprite;
+                    break;
+                }
+                
+            }
+        }
 
-        for(int index = 0; index < 3; index++) {
-            foreach (Item item in items) {
-                if (item.data == weaponData[index]) {
-                    if(changedWeaponImage[index] == weaponData[index]){
-                        break;
-                    }
-                    ChangeWpnSprite(item);
-
+        for(int index = 0; index < GameManager.instance.itemGems.Count; index++) {
+            foreach (Sprite sprite in iconSprite) {
+                if (sprite == GameManager.instance.itemGems[index].itemIcon) {
+                    gemImage[index].sprite = sprite;
+                    break;
                 }
             }
         }
-
-        for(int index = 0; index < 3; index++) {
-            foreach (Item item in items) {
-                if (item.data == gemData[index]) {
-                    if(changedGemImage[index] == gemData[index]){
-                        break;
-                    }
-                    ChangeGemSprite(item);
-                }
-            }
-        }
-
-        void ChangeWpnSprite(Item item) {
-
-            if (num1 == 0) {
-                weaponImage[0].sprite = item.data.itemIcon;
-                changedWeaponImage[0] = item.data;
-                num1++;
-            } else if (num1 == 1) {
-                weaponImage[1].sprite = item.data.itemIcon;
-                changedWeaponImage[1] = item.data;
-                num1++;
-            } else if (num1 == 2) {
-                weaponImage[2].sprite = item.data.itemIcon;
-                changedWeaponImage[2] = item.data;
-                num1++;
-            }
-            
-        }
-
-        void ChangeGemSprite(Item item) {
-
-            if (num2 == 0) {
-                gemImage[0].sprite = item.data.itemIcon;
-                changedGemImage[0] = item.data;
-            } else if (num2 == 1) {
-                gemImage[1].sprite = item.data.itemIcon;
-                changedGemImage[1] = item.data;
-            } else if (num2 == 2) {
-                gemImage[2].sprite = item.data.itemIcon;
-                changedGemImage[2] = item.data;
-            }
-            num2++;
-        }
-
 
         // 3. 만렙이 아닌 아이템을 활성화할 리스트에 추가
         int selected = 0;
@@ -300,7 +267,12 @@ public class LevelUp : MonoBehaviour
                 }
             }
         }
-        
+
+        foreach(Item item in items) { //파괴된 무기를 선택지에서 제거
+            if ( item.data == GameManager.instance.destroyWeapon) {
+                activeItems.Remove(item);
+            }
+        }
 
         // 4. 활성화할 아이템이 3개보다 적을 경우, 맥주 아이템 추가
         while (activeItems.Count < 3)
@@ -341,6 +313,7 @@ public class LevelUp : MonoBehaviour
         GameManager.instance.flagDestroyWeapon = 1;
 
         rectSelectPanel.gameObject.SetActive(false);
+        rectDestroyPanel.gameObject.SetActive(true);
 
         rectSelectPanel.localScale = Vector3.zero;
         rectDestroyPanel.localScale = Vector3.one;
@@ -395,6 +368,7 @@ public class LevelUp : MonoBehaviour
         GameManager.instance.flagDestroyWeapon = 0;
 
         rectSelectPanel.gameObject.SetActive(true);
+        rectDestroyPanel.gameObject.SetActive(false);
 
         rectSelectPanel.localScale = Vector3.one;
         rectDestroyPanel.localScale = Vector3.zero;

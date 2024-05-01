@@ -43,7 +43,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
 
-                if (GameManager.instance.flagDestroyWeapon != 0) {
+                if (GameManager.instance.flagDestroyWeapon == 1) {
                     if(data.itmeId == 0) { //방패의 id
                         Weapon wpn = GameObject.Find("Weapon 0").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
@@ -91,11 +91,16 @@ public class Item : MonoBehaviour
         }
     }
 
-    
-
-
     public void OnClick()
     {
+        if (GameManager.instance.flagDestroyWeapon == 1) {
+            OnClickedButtonDstWpn ();
+        } else {
+            OnClickedButtonLvUp ();
+        }
+    }
+
+    void OnClickedButtonLvUp () {
         switch(data.itemType) {
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
@@ -140,9 +145,68 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void OnClick_Destroy()
-    {
-
+    void OnClickedButtonDstWpn () {
+        RectTransform rectDestroyPanel = GameObject.Find("Destroy Panel").GetComponent<RectTransform>();;
+        Weapon wpn;
+        Bullet[] blt;
+        switch (data.itmeId) {
+            case 0: // 방패
+                wpn = GameObject.Find("Weapon 0").GetComponent<Weapon>();
+                blt = GameObject.Find("Weapon 0").GetComponentsInChildren<Bullet>(true);
+                foreach (Bullet b in blt) {
+                    b.gameObject.SetActive(false);
+                    Destroy(b);
+                }
+                wpn.gameObject.SetActive(false);
+                Destroy(wpn);
+                rectDestroyPanel.gameObject.SetActive(false);
+                GameManager.instance.itemWeapons.Remove(data);
+                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.destroyWeapon = data;
+                break;
+            case 1: // 망치
+                wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
+                blt = GameObject.Find("Weapon 1").GetComponentsInChildren<Bullet>(true);
+                foreach (Bullet b in blt) {
+                    b.gameObject.SetActive(false);
+                    Destroy(b);
+                }
+                wpn.gameObject.SetActive(false);
+                Destroy(wpn);
+                rectDestroyPanel.gameObject.SetActive(false);
+                GameManager.instance.itemWeapons.Remove(data);
+                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.destroyWeapon = data;
+                break;
+            case 2: // 창
+                wpn = GameObject.Find("Weapon 2").GetComponent<Weapon>();
+                blt = GameObject.Find("Weapon 2").GetComponentsInChildren<Bullet>(true);
+                foreach (Bullet b in blt) {
+                    b.gameObject.SetActive(false);
+                    Destroy(b);
+                }
+                wpn.gameObject.SetActive(false);
+                Destroy(wpn);
+                rectDestroyPanel.gameObject.SetActive(false);
+                GameManager.instance.itemWeapons.Remove(data);
+                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.destroyWeapon = data;
+                break;
+            case 3: // 단검
+                wpn = GameObject.Find("Weapon 3").GetComponent<Weapon>();
+                blt = GameObject.Find("Weapon 3").GetComponentsInChildren<Bullet>(true);
+                foreach (Bullet b in blt) {
+                    b.gameObject.SetActive(false);
+                    Destroy(b);
+                }
+                wpn.gameObject.SetActive(false);
+                Destroy(wpn);
+                rectDestroyPanel.gameObject.SetActive(false);
+                GameManager.instance.itemWeapons.Remove(data);
+                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.destroyWeapon = data;
+                break;
+            
+        }
     }
-
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public float health;
     public float maxHealth = 100;
     public List<ItemData> itemWeapons = new List<ItemData>(); //획득한 무기를 저장하는 리스트
+    public ItemData destroyWeapon;
     public List<ItemData> itemGems = new List<ItemData>(); //획득한 보석을 저장하는 리스트
     public float takedmgnd; // .. 받는피해감소량 / take damage down ..
     public float lifeSteal;

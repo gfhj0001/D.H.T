@@ -16471,6 +16471,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  uiSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  iconSprite:
+  - {fileID: 21300000, guid: 8ef26cf1a7e80964e863bc419d8fcf8a, type: 3}
+  - {fileID: 21300000, guid: 21fa46a168900d84cb6d36374132be63, type: 3}
+  - {fileID: -7181086773052724473, guid: d6f0907606ad9e64f90280b0359a8c3b, type: 3}
+  - {fileID: 6743011832569215315, guid: df1d7f9776a222a4bb2b3ac3a0a7f757, type: 3}
+  - {fileID: 21300000, guid: 5c2d63d0adfddaf48a1c68053a574cb3, type: 3}
+  - {fileID: 21300000, guid: ebb733038ee355f4c977c57195dc41a3, type: 3}
+  - {fileID: 21300000, guid: 1e5a00d6a2884154d927f85e1bf838c3, type: 3}
+  - {fileID: 21300000, guid: 6c08ec8089070c742baefef9593fe8b0, type: 3}
+  - {fileID: 21300000, guid: f38aec9888492bd47a0639a78709c39d, type: 3}
+  - {fileID: 21300000, guid: c7610bd4ca76e8847951d69e5170169e, type: 3}
+  - {fileID: 21300000, guid: aecc7d2f4ee7ba34f90b1fa340744d8b, type: 3}
 --- !u!95 &948081001
 Animator:
   serializedVersion: 5
@@ -26323,6 +26336,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 1000
   itemWeapons: []
+  destroyWeapon: {fileID: 0}
   itemGems: []
   takedmgnd: 0
   lifeSteal: 0
