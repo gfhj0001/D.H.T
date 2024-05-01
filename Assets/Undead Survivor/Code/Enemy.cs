@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") )
+        if (!isLive || (anim.GetCurrentAnimatorStateInfo(0).IsName("Hit") && !(gameObject.tag == "MidBoss" || gameObject.tag == "Boss")))
             return;
 
         Vector2 dirVec = target.position - rigid.position;
