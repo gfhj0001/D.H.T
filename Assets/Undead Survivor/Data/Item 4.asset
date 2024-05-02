@@ -26,4 +26,4 @@ MonoBehaviour:
   - 1.4
   - 2
   counts: 6300000063000000630000006300000063000000
-  projectile: {fileID: 1862675720181712372, guid: 1189991fee9892947a1f32a3eb3f2a3c, type: 3}
+  projectile: {fileID: 1862675720181712372, guid: f530bf0c7ec93dc4e9dd14e4efed62b8, type: 3}

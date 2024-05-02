@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e12c9e17f06457548868c13b8bf5000f, type: 3}
-  m_Name: Item 3
+  m_Name: Item 5
   m_EditorClassIdentifier: 
-  itemType: 1
-  itmeId: 3
-  itemName: "\uB2E8\uAC80"
-  itemDesc: "\uB370\uBBF8\uC9C0 {0}% \uC99D\uAC00\n\uBC1C\uC0AC\uC18D\uB3C4 {0}%
-    \uC99D\uAC00 "
-  itemIcon: {fileID: 6743011832569215315, guid: df1d7f9776a222a4bb2b3ac3a0a7f757, type: 3}
-  baseDamage: 3
-  baseCount: 0
+  itemType: 0
+  itmeId: 5
+  itemName: "\uCC44\uCC0D"
+  itemDesc: "\uB370\uBBF8\uC9C0 {0}% \uC99D\uAC00\n\uD68C\uC804\uCCB4 {1}\uAC1C \uCD94\uAC00"
+  itemIcon: {fileID: 4054085964001987460, guid: b3b22243542b1fb43916c25a1ac6a3d5, type: 3}
+  baseDamage: 5
+  baseCount: 2
   damages:
-  - 0.35
-  - 0.7
-  - 1
-  - 1.4
+  - 1.5
   - 2
+  - 2.5
+  - 3
+  - 4
   counts: 0100000001000000010000000100000001000000
-  projectile: {fileID: 8780897712183089252, guid: 7a808df49f364754a81fd6c2793474a4, type: 3}
+  projectile: {fileID: 6056217641987770559, guid: 5cbcc13473174394bb5c19e492034108, type: 3}

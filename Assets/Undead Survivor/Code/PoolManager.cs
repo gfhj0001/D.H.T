@@ -7,7 +7,7 @@ public class PoolManager : MonoBehaviour
     public GameObject[] prefabs;
     List<GameObject>[] pools;
     public const int BOSS_PREFAB_INDEX = 1; // 보스 전용 프리팹을 2 번째 위치에 두었다고 가정
-    public const int MID_BOSS_PREFAB_INDEX = 6; // 중간 보스 전용 프리팹을 7 번째 위치에 두었다고 가정
+    public const int MID_BOSS_PREFAB_INDEX = 7; // 중간 보스 전용 프리팹을 7 번째 위치에 두었다고 가정
     void Awake()
     {
         pools = new List<GameObject>[prefabs.Length];
