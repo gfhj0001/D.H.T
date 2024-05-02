@@ -16,23 +16,17 @@ public class Weapon : MonoBehaviour
     public float speed_knife;
     public float speed_sheild;
     public float speed_hammer;
-    public float speed_whip;
     public float[] array_speed = {};
 
     public float speed_Anvil; //모루
 
-    GameObject leftwhip;
-    GameObject rightwhip;
-    
-    Weapon wpn;
+
     float timer;
     Player player;
 
     void Awake()
     {
         player = GameManager.instance.player;
-         leftwhip = player.transform.Find("leftwhip").gameObject;
-        rightwhip = player.transform.Find("rightwhip").gameObject;
     }
 
 
@@ -73,18 +67,10 @@ public class Weapon : MonoBehaviour
                     Fire_Anvil();
                 }
                 break;
-            case 5: // 채찍
-
-                timer += Time.deltaTime;
-
-                if (timer > speed_whip)
-                {
-                   timer = 0f;
-                   Batch_whip();
-                }
-                break;
+        
     }
-}
+
+    }
 
     public void LevelUp(float damage, int count)
     {
@@ -120,30 +106,12 @@ public class Weapon : MonoBehaviour
                         break;
                 }
                 break;
-            case 4: // 모루
-                speed_Anvil = 0.5f; 
-                break;
-            case 5: //채찍
-                switch (count) { //채찍 공속 증가
-                    case 1:
-                        speed_whip = speed_whip * (1f - 0.1f);
-                        break;
-                    case 2:
-                        speed_whip = speed_whip * (1f - 0.15f);
-                        break;
-                    case 3:
-                        speed_whip = speed_whip * (1f - 0.2f);
-                        break;
-                    case 4:
-                        speed_whip = speed_whip * (1f - 0.25f);
-                        break;
-                    default:
-                        speed_whip = speed_whip * (1f - 0.35f);
-                        break;
-                }
+            case 4: // 모루 [레벨업시 공속증가 X]
                 break;
         }
+
         level++;
+
     }
     public void Init(ItemData data)
     {
@@ -183,10 +151,6 @@ public class Weapon : MonoBehaviour
                 break;
             case 4: // 모루
                 speed_Anvil = 1f; 
-                break;
-            case 5: // 채찍
-                speed_whip = 2f; 
-                Batch_whip();
                 break;
         }
 
@@ -291,8 +255,14 @@ public class Weapon : MonoBehaviour
         Vector3 targetPos = player.scanner.nearestTarget.position;
         Vector3 dirToTarget = (targetPos - transform.position).normalized;
 
+        // 무작위한 방향 벡터 생성
+        Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+
         // 위쪽 방향 설정
         Vector3 upDir = Vector3.up;
+
+        // 위쪽 방향 벡터에 무작위성 벡터를 더함.
+        upDir += randomDirection;
 
         // 위쪽 방향과 적을 향한 방향 사이의 중간 방향 계산
         Vector3 dir = Vector3.Lerp(upDir, dirToTarget, 0.5f).normalized;
@@ -304,54 +274,5 @@ public class Weapon : MonoBehaviour
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
-    // IEnumerator ShowWhip()
-    // {
-    // leftwhip.SetActive(true);
-    // rightwhip.SetActive(true);
-    
-    // // 0.5초 동안 대기
-    // yield return new WaitForSeconds(0.5f);
-    
-    // leftwhip.SetActive(false);
-    // rightwhip.SetActive(false);
-    // }
 
-void Batch_whip()
-{
-    for (int index = 0; index < count; index++)
-    {
-        Transform bullet;
-
-        if (index < transform.childCount)
-        {
-            bullet = transform.GetChild(index);
-        }
-        else
-        {
-            bullet = GameManager.instance.Pool.Get(prefabId).transform;
-            bullet.parent = transform;
-        }
-
-        bullet.localPosition = Vector3.zero;
-        bullet.localRotation = Quaternion.identity;
-
-        Vector3 rotVec = Vector3.forward * (360 * index / count + 90);
-        bullet.Rotate(rotVec);
-        bullet.Translate(bullet.up * 1.5f, Space.World);
-        bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero);
-
-        // 비활성화 코루틴 시작, 해당 총알의 Weapon을 전달
-        StartCoroutine(whipdelay(bullet.gameObject));
-    }
-}
-
-IEnumerator whipdelay(GameObject bulletObject)
-{
-    // 해당 총알 활성화
-    bulletObject.SetActive(true);
-
-    // 0.5초 대기 후 비활성화
-    yield return new WaitForSeconds(0.5f);
-    bulletObject.SetActive(false);
-}
 }
