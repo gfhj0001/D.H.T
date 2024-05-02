@@ -122,7 +122,50 @@ public class Enemy : MonoBehaviour
         rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
 
     }
-     
+    public void TakeDamageOverTime(float damage, float interval)
+    {
+        StartCoroutine(ApplyDamageOverTime(damage, interval));
+    }
+
+    private IEnumerator ApplyDamageOverTime(float damage, float interval)
+    {
+        while (isLive && health > 0)
+        {
+            health -= damage;
+            yield return new WaitForSeconds(interval);
+        }
+          if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+            else
+            {
+                isLive = false;
+                coll.enabled = false;
+                rigid.simulated = false;
+                spriter.sortingOrder = 1;
+                anim.SetBool("Dead", true);
+                GameManager.instance.kill++;
+                GameManager.instance.GetExp();
+
+                if (GameManager.instance.isLive)
+                    AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+
+                // 태그가 "MidBoss"인 몬스터가 죽었을 때 경험치 획득  -- 반지 획득으로 변경예정
+                if (gameObject.tag == "MidBoss")
+                {
+                    GameManager.instance.GetExp();
+                }
+
+                // 태그가 "Boss"인 몬스터가 죽었을 때만 게임 승리
+                if (gameObject.tag == "Boss")
+                {
+                    GameManager.instance.GameVictory();
+                }
+            }
+    }
+
 
     void Dead()
     {

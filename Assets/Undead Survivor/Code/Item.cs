@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-
-    
-
     public ItemData data;
     public int level;
     public Weapon weapon;
@@ -103,7 +100,17 @@ public class Item : MonoBehaviour
                         textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" ;
                         break;
                     }
-                   }
+                    else if (data.itmeId == 6)
+                    { //용암의 id
+                        Weapon wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
+                        currentDamage = wpn.damage;
+                        currentSpeed = wpn.speed_Anvil;
+                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+                        textLevel.text = "Lv." + wpn.level;
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n";
+                        break;
+                    }
+                }
                 textLevel.text = "Lv." + (level + 1);
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
                 break;
@@ -264,7 +271,22 @@ public class Item : MonoBehaviour
                 GameManager.instance.flagDestroyWeapon = 0;
                 GameManager.instance.destroyWeapon = data;
                 break;
-    
+            case 6: // 모루
+                wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
+                blt = GameObject.Find("Weapon 6").GetComponentsInChildren<Bullet>(true);
+                foreach (Bullet b in blt)
+                {
+                    b.gameObject.SetActive(false);
+                    Destroy(b);
+                }
+                wpn.gameObject.SetActive(false);
+                Destroy(wpn);
+                rectDestroyPanel.gameObject.SetActive(false);
+                GameManager.instance.itemWeapons.Remove(data);
+                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.destroyWeapon = data;
+                break;
+
         }
     }
 }

@@ -19,6 +19,8 @@ public class Weapon : MonoBehaviour
     public float speed_whip;
 
     public float speed_Anvil; //모루
+    public GameObject lavaAreaPrefab; // 용암 영역 프리팹
+    public float speed_LavaBucket;
 
     GameObject leftwhip;
     GameObject rightwhip;
@@ -82,7 +84,16 @@ public class Weapon : MonoBehaviour
                    Batch_whip();
                 }
                 break;
-    }
+            case 6: // 용암 
+                timer += Time.deltaTime;
+
+                if (timer > speed_LavaBucket)
+                {
+                    timer = 0f;
+                    Fire_LavaBucket();
+                }
+                break;
+        }
 }
 
     public void LevelUp(float damage, int count)
@@ -140,6 +151,8 @@ public class Weapon : MonoBehaviour
                         break;
                 }
             break;
+            case 6: // 용암
+                break;
 
         }
         level++;
@@ -188,6 +201,10 @@ public class Weapon : MonoBehaviour
             case 5: // 채찍
                 speed_whip = 2f; 
                 Batch_whip();
+                break;
+            case 6: // 용암 양동이
+                lavaAreaPrefab = data.projectile; // 용암 영역 프리팹 가져오기
+                speed_LavaBucket = 1f; // 1초에 1번 용암 양동이 투척
                 break;
         }
 
@@ -352,6 +369,23 @@ void Batch_whip()
     }
 }
 
+    void Fire_LavaBucket()
+    {
+        if (!player.scanner.nearestTarget)
+            return;
+
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+
+        // 적 위치에 용암 생성 로직
+        GameObject lavaArea = Instantiate(lavaAreaPrefab, targetPos, Quaternion.identity);
+        DamageOverTimeArea dotArea = lavaArea.GetComponent<DamageOverTimeArea>();
+      
+
+        // 5초 후에 용암 제거
+        Destroy(lavaArea, 5f);
+
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
+    }
 IEnumerator whipdelay(GameObject bulletObject)
 {
     // 해당 총알 활성화
