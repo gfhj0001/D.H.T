@@ -123,6 +123,9 @@ public class Gear : MonoBehaviour
                 case 3 : //단검
                     weapon.speed_knife = weapon.speed_knife * (1f - rate);
                     break;
+                case 4 : //모루
+                    weapon.speed_Anvil = weapon.speed_Anvil * (1f - rate);
+                    break;
             }
         }
     }

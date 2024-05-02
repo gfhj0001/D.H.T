@@ -106,8 +106,7 @@ public class Weapon : MonoBehaviour
                         break;
                 }
                 break;
-            case 4: // 모루
-                speed_Anvil = 0.5f; // 예시 값입니다. 실제 게임에서는 적절한 값을 설정해야 합니다.
+            case 4: // 모루 [레벨업시 공속증가 X]
                 break;
         }
 
@@ -256,8 +255,14 @@ public class Weapon : MonoBehaviour
         Vector3 targetPos = player.scanner.nearestTarget.position;
         Vector3 dirToTarget = (targetPos - transform.position).normalized;
 
+        // 무작위한 방향 벡터 생성
+        Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
+
         // 위쪽 방향 설정
         Vector3 upDir = Vector3.up;
+
+        // 위쪽 방향 벡터에 무작위성 벡터를 더함.
+        upDir += randomDirection;
 
         // 위쪽 방향과 적을 향한 방향 사이의 중간 방향 계산
         Vector3 dir = Vector3.Lerp(upDir, dirToTarget, 0.5f).normalized;
