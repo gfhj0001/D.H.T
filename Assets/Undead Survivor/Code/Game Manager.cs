@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public GameObject enemyCleaner;
 
+    [Header("# ETC..")]
+    public float hammerWaitingTime;
+
     void Awake()
     {
         instance = this;
@@ -129,6 +132,36 @@ public class GameManager : MonoBehaviour
     {
         isLive = true;
         Time.timeScale = 1;
+    }
+
+    public void StartHammerCorutine()
+    {
+        StartCoroutine("Hammer_Active"); //망치가 나타났다가 사라지는 코루틴
+    }
+
+    public void StopHammerCorutine()
+    {
+        StopCoroutine("Hammer_Active");
+    }
+
+    IEnumerator Hammer_Active()
+    {
+        Weapon hammer = GameObject.Find("Weapon 1").GetComponent<Weapon>();
+        Bullet hammerBullet = hammer.GetComponentInChildren<Bullet>();
+        Transform bullet = hammerBullet.transform;
+        hammer.gameObject.SetActive(false);
+        while (true) {
+            hammer.gameObject.SetActive(true);
+            bullet.localPosition = Vector3.zero;
+            bullet.Translate(bullet.up * 1, Space.World);
+            for(int index = 1; index < 200; index++){
+                bullet.Translate(bullet.up * 0.0005f * index , Space.World);
+                yield return new WaitForSeconds(0.03f);
+            }
+            hammer.gameObject.SetActive(false);
+            yield return new WaitForSeconds(hammerWaitingTime);
+            //3초동안 망치 비활성화
+        }
     }
 
 }

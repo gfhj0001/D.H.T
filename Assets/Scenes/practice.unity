@@ -32416,6 +32416,7 @@ MonoBehaviour:
   uiLevelUp: {fileID: 948081000}
   uiResult: {fileID: 328482567}
   enemyCleaner: {fileID: 1147858241}
+  hammerWaitingTime: 0
 --- !u!1 &1603837928
 GameObject:
   m_ObjectHideFlags: 0
@@ -40078,7 +40079,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1598498433}
   - {fileID: 210477384}
-  - {fileID: 818455329}
   - {fileID: 356416837}
   - {fileID: 2006004633}
   - {fileID: 1447595602}
+  - {fileID: 818455329}

@@ -17,7 +17,6 @@ public class Weapon : MonoBehaviour
     public float speed_sheild;
     public float speed_hammer;
     public float speed_whip;
-    public float[] array_speed = {};
 
     public float speed_Anvil; //모루
 
@@ -98,7 +97,7 @@ public class Weapon : MonoBehaviour
                 // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
                 break;
             case 1: 
-                Batch_hammer();
+                // Batch_hammer();
                 // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
                 break;
             case 3:
@@ -122,7 +121,7 @@ public class Weapon : MonoBehaviour
                 break;
             case 4: // 모루 [레벨업시 공속증가 X]
                 break;
-            case 5: //채찍
+            case 5:
                 switch (count) { //채찍 공속 증가
                     case 1:
                         speed_whip = speed_whip * (1f - 0.1f);
@@ -140,6 +139,8 @@ public class Weapon : MonoBehaviour
                         speed_whip = speed_whip * (1f - 0.35f);
                         break;
                 }
+            break;
+
         }
         level++;
     }
@@ -170,8 +171,10 @@ public class Weapon : MonoBehaviour
                 
                 break;
             case 1: //망치
-                speed_hammer = 100;
+                speed_hammer = 200;
+                GameManager.instance.hammerWaitingTime = 2.5f;
                 Batch_hammer();
+                GameManager.instance.StartHammerCorutine();
                 break;
             case 2: //창
                 speed = 0.75f; // 1.5초에 2발 발사.
@@ -233,7 +236,7 @@ public class Weapon : MonoBehaviour
 
             Vector3 rotVec = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotVec);
-            bullet.Translate(bullet.up * 3.5f, Space.World);
+            bullet.Translate(bullet.up * 1, Space.World);
             bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //-100 is Infinity per
         }
     }

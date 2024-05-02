@@ -192,6 +192,7 @@ public class Item : MonoBehaviour
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 1: // 망치
+                GameManager.instance.StopHammerCorutine(); //코루틴 정지
                 wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
                 blt = GameObject.Find("Weapon 1").GetComponentsInChildren<Bullet>(true);
                 foreach (Bullet b in blt) {

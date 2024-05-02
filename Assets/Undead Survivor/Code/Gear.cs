@@ -115,7 +115,7 @@ public class Gear : MonoBehaviour
                     weapon.speed_sheild = -150 + (-150 * rate);
                     break;
                 case 1: //망치
-                    weapon.speed_hammer = 100 + (100 * rate);
+                    GameManager.instance.hammerWaitingTime = GameManager.instance.hammerWaitingTime * (1f - rate);
                     break;
                 case 2 : //창
                     weapon.speed = 0.75f * (1f - rate);
