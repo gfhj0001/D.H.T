@@ -21,9 +21,6 @@ public class Weapon : MonoBehaviour
     public float speed_Anvil; //모루
     public GameObject lavaAreaPrefab; // 용암 영역 프리팹
     public float speed_LavaBucket;
-
-    GameObject leftwhip;
-    GameObject rightwhip;
     
     Weapon wpn;
     float timer;
@@ -32,8 +29,6 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         player = GameManager.instance.player;
-         leftwhip = player.transform.Find("leftwhip").gameObject;
-        rightwhip = player.transform.Find("rightwhip").gameObject;
     }
 
 
@@ -361,7 +356,7 @@ void Batch_whip()
 
         Vector3 rotVec = Vector3.forward * (360 * index / count + 90);
         bullet.Rotate(rotVec);
-        bullet.Translate(bullet.up * 1.5f, Space.World);
+        bullet.Translate(bullet.up * 0.1f, Space.World);
         bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero);
 
         // 비활성화 코루틴 시작, 해당 총알의 Weapon을 전달
@@ -392,7 +387,7 @@ void Batch_whip()
         bulletObject.SetActive(true);
 
         // 0.5초 대기 후 비활성화
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         bulletObject.SetActive(false);
     }
 }
