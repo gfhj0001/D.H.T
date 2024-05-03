@@ -386,13 +386,13 @@ void Batch_whip()
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
-IEnumerator whipdelay(GameObject bulletObject)
-{
-    // 해당 총알 활성화
-    bulletObject.SetActive(true);
+    IEnumerator whipdelay(GameObject bulletObject)
+    {
+        // 해당 총알 활성화
+        bulletObject.SetActive(true);
 
-    // 0.5초 대기 후 비활성화
-    yield return new WaitForSeconds(0.5f);
-    bulletObject.SetActive(false);
-}
+        // 0.5초 대기 후 비활성화
+        yield return new WaitForSeconds(0.5f);
+        bulletObject.SetActive(false);
+    }
 }

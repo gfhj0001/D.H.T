@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, kill, Time, Health }
+    public enum InfoType { Exp, Level, kill, Time, Health, ETC }
     public InfoType type;
 
     Text myText;
     Slider mySlider;
+
 
     void Awake()
     {
@@ -49,6 +50,10 @@ public class NewBehaviourScript : MonoBehaviour
 
                 myText.text = string.Format("{0:D2} : {1:D2}", min, sec);
                     break;
+            case InfoType.ETC:
+
+                break;
         }
     }
+
 }

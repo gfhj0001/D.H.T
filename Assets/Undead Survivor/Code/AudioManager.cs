@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public AudioMixer mixer;
+    public AudioMixerGroup[] mixers;
 
     [Header("#BGM")]
     public AudioClip bgmClip;
     public float bgmVolume;
     AudioSource bgmPlayer;
     AudioHighPassFilter bgmEffect;
+
+
 
     [Header("#SFX")]
     public AudioClip[] sfxClips;
@@ -25,6 +31,7 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        mixers = mixer.FindMatchingGroups("Master");
         Init();
     }
 
@@ -38,6 +45,7 @@ public class AudioManager : MonoBehaviour
         bgmPlayer.loop = true;
         bgmPlayer.volume = bgmVolume;
         bgmPlayer.clip = bgmClip;
+        bgmPlayer.outputAudioMixerGroup = mixers[1];
         bgmEffect = Camera.main.GetComponent<AudioHighPassFilter>();
 
         // 효과음 플레이어 초기화
@@ -50,8 +58,16 @@ public class AudioManager : MonoBehaviour
             sfxPlayers[index].playOnAwake = false;
             sfxPlayers[index].bypassListenerEffects = true;
             sfxPlayers[index].volume = sfxVolume;
+            sfxPlayers[index].outputAudioMixerGroup = mixers[2];
         }
+
+        //오디오 믹서 값 초기화
+        mixer.SetFloat("Master", 0);
+        mixer.SetFloat("BGM", 0);
+        mixer.SetFloat("SFX", 0);
     }
+
+
 
     public void PlayBgm(bool isPlay)
     {
@@ -86,4 +102,23 @@ public class AudioManager : MonoBehaviour
             break;
         }
     }
+
+    public void BGMAudioChange(float sound)
+    {
+        if (sound == -40f) {
+            mixer.SetFloat("BGM", -80);
+        } else {
+            mixer.SetFloat ("BGM", sound);
+        }
+    }
+
+    public void SFXAudioChange(float sound)
+    {
+        if (sound == -40f) {
+            mixer.SetFloat("SFX", -80);
+        } else {
+            mixer.SetFloat ("SFX", sound);
+        }
+    }
+
 }
