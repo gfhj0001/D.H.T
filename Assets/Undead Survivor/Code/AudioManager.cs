@@ -121,4 +121,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void AudioChange(float sound)
+    {
+        if (sound == -40f) {
+            mixer.SetFloat("Master", -80);
+        } else {
+            mixer.SetFloat ("Master", sound);
+        }
+    }
+
 }

@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour
     public GameObject enemyCleaner;
 
     [Header("# ETC..")]
-    public float hammerWaitingTime;
+    public float hammerDelay;
     public int flagDestroyWeapon = 0; //무기 파괴 플래그
+    public float lavaDamage;
+    public float lavaDelay;
 
     void Awake()
     {
@@ -145,6 +147,18 @@ public class GameManager : MonoBehaviour
         StopCoroutine("Hammer_Active");
     }
 
+    public void StartLavaBuckitCorutine()
+    {
+        StartCoroutine("LavaBuckit_Active");
+    }
+
+    public void StopLavaBuckitCorutine()
+    {
+        StopCoroutine("LavaBuckit_Active");
+    }
+    
+
+
     IEnumerator Hammer_Active()
     {
         Weapon hammer = GameObject.Find("Weapon 1").GetComponent<Weapon>();
@@ -160,9 +174,37 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(0.03f);
             }
             hammer.gameObject.SetActive(false);
-            yield return new WaitForSeconds(hammerWaitingTime);
+            yield return new WaitForSeconds(hammerDelay);
             //3초동안 망치 비활성화
         }
+    }
+
+    IEnumerator LavaBuckit_Active()
+    {
+        Bullet lavaBuckitBullet = GameObject.Find("Bullet 5(Clone)").GetComponent<Bullet>();
+        Transform bullet = lavaBuckitBullet.transform;
+        float x;
+        float y;
+        Vector3 pos = Vector3.zero;
+        Vector3 tmp;
+        while(true)
+        {   
+            x = UnityEngine.Random.Range(-3f, 3f);
+            y = UnityEngine.Random.Range(-8f, 8f);
+            pos = new Vector3(x, y, 0f);
+            Transform playertransform = GameObject.Find("Player").transform;
+            tmp = playertransform.position + pos;
+            bullet.position = tmp;
+            lavaBuckitBullet.gameObject.SetActive(true);
+            // AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege); 나중에 사운드 추가
+            
+            yield return new WaitForSeconds(5f);
+            lavaBuckitBullet = GameObject.Find("Bullet 5(Clone)").GetComponent<Bullet>();//lavaBuckit.GetComponentInChildren<Bullet>();
+
+            lavaBuckitBullet.gameObject.SetActive(false);
+            yield return new WaitForSeconds(GameManager.instance.lavaDelay);
+        }
+
     }
 
 }

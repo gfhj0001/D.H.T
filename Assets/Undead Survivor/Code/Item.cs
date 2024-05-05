@@ -54,9 +54,11 @@ public class Item : MonoBehaviour
                     { //망치의 id
                         Weapon wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
+                        currentSpeed = GameManager.instance.hammerDelay;
+                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         currentCount = wpn.count;
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개";
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사";
                         break;
                     }
                     else if (data.itmeId == 2)
@@ -67,7 +69,7 @@ public class Item : MonoBehaviour
                         currentCount = wpn.count;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : " + currentCount.ToString();
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : " + currentCount.ToString();
                         break;
                     }
                     else if (data.itmeId == 3)
@@ -77,7 +79,7 @@ public class Item : MonoBehaviour
                         currentSpeed = wpn.speed_knife;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 0";
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 0";
                         break;
                     }
                     else if (data.itmeId == 4)
@@ -87,27 +89,27 @@ public class Item : MonoBehaviour
                         currentSpeed = wpn.speed_Anvil;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 99";
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 던짐" + "\n" + "관통력 : 99";
                         break;
                     }
                     else if (data.itmeId == 5)
                     { //채찍의 id
                         Weapon wpn = GameObject.Find("Weapon 5").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
-                        currentSpeed = wpn.speed_Anvil;
+                        currentSpeed = wpn.speed_whip;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" ;
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 휘두름" + "\n" ;
                         break;
                     }
                     else if (data.itmeId == 6)
                     { //용암의 id
                         Weapon wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
-                        currentSpeed = wpn.speed_Anvil;
+                        currentSpeed = GameManager.instance.hammerDelay;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "연사 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n";
+                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 뿌림";
                         break;
                     }
                 }
@@ -271,14 +273,8 @@ public class Item : MonoBehaviour
                 GameManager.instance.flagDestroyWeapon = 0;
                 GameManager.instance.destroyWeapon = data;
                 break;
-            case 6: // 모루
+            case 6: // 용암
                 wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
-                blt = GameObject.Find("Weapon 6").GetComponentsInChildren<Bullet>(true);
-                foreach (Bullet b in blt)
-                {
-                    b.gameObject.SetActive(false);
-                    Destroy(b);
-                }
                 wpn.gameObject.SetActive(false);
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);

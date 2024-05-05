@@ -1,58 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class DamageOverTimeArea : MonoBehaviour
-{
-    public float damage = 10; // µ¥¹ÌÁö °ª
-    public float damageInterval = 0.5f; // µ¥¹ÌÁö °£°Ý (ÃÊ)
-    public float duration = 5f; // ¿ë¾ÏÀÌ À¯ÁöµÇ´Â ½Ã°£
+// public class DamageOverTimeArea : MonoBehaviour
+// {
+//     public float damage = 0.1f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+//     public float damageInterval = 0.5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½)
+//     public float duration = 5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ã°ï¿½
 
-    private float elapsedTime = 0f; // ¿ë¾Ï ¾È¿¡ ¸Ó¹«¸¥ ½Ã°£ ÃßÀûÀ» À§ÇÑ º¯¼ö
-    private Coroutine damageCoroutine; // µ¥¹ÌÁö ÄÚ·çÆ¾
+//     private Coroutine damageCoroutine; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
 
-    private void Start()
-    {
-        // ¿ë¾Ï À¯Áö ½Ã°£ÀÌ Á¾·áµÇ¸é ¿ë¾Ï ¿ÀºêÁ§Æ®¸¦ ºñÈ°¼ºÈ­ÇÏ±â À§ÇÑ ÄÚ·çÆ¾ ½ÇÇà
-        StartCoroutine(DisableLavaAfterDuration());
-    }
+//     private void Start()
+//     {
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy")) // ¿ë¾Ï ¾È¿¡ µé¾î¿Â ÀûÀÌ¶ó¸é
-        {
+//     }
+
+//     private void OnTriggerStay2D(Collider2D other)
+//     {
+//         if (other.CompareTag("Enemy")) // ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
+//         {
             
 
-            // ÀûÀÇ Ã¼·ÂÀ» °¡Á®¿À±â
-            Enemy enemyScript = other.GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                float enemyHealth = enemyScript.health;
+//             // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//             Enemy enemyScript = other.GetComponent<Enemy>();
+//             if (enemyScript != null)
+//             {
+//                 float enemyHealth = enemyScript.health;
 
-                // µ¥¹ÌÁö Àû¿ë
-                enemyScript.TakeDamageOverTime(damage, damageInterval);
-            }
-        }
-    }
+//                 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//                 enemyScript.TakeDamageOverTime(damage, damageInterval);
+//             }
+//         }
+//     }
 
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Enemy")) // ¿ë¾Ï¿¡¼­ ³ª°£ ÀûÀÌ¶ó¸é
-        {
+//     private void OnTriggerExit2D(Collider2D other)
+//     {
+//         if (other.CompareTag("Enemy")) // ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
+//         {
            
-            if (damageCoroutine != null) // µ¥¹ÌÁö ÄÚ·çÆ¾ÀÌ ½ÇÇà ÁßÀÌ¶ó¸é
-            {
-                StopCoroutine(damageCoroutine); // µ¥¹ÌÁö Àû¿ë ÄÚ·çÆ¾ Á¾·á
-            }
-        }
-    }
-
-    private IEnumerator DisableLavaAfterDuration()
-    {
-        yield return new WaitForSeconds(duration); // ¿ë¾Ï À¯Áö ½Ã°£¸¸Å­ ´ë±â
-
-        // ¿ë¾Ï ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
-        gameObject.SetActive(false);
-    }
-}
+//             if (damageCoroutine != null) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
+//             {
+//                 StopCoroutine(damageCoroutine); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
+//             }
+//         }
+//     }
+// }

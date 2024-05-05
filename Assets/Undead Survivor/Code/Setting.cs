@@ -10,6 +10,7 @@ public class Setting : MonoBehaviour
 
     public Slider bgmAudioSlider;
     public Slider sfxAudioSlider;
+    public Slider allAudioSlider;
     public AudioMixer masterMixer;
 
     RectTransform settingPage;
@@ -22,6 +23,7 @@ public class Setting : MonoBehaviour
         settingPage = GameObject.Find("Setting").GetComponent<RectTransform>();
         bgmAudioSlider = GameObject.Find("BGM_Slider").GetComponent<Slider>();
         sfxAudioSlider = GameObject.Find("SFX_Slider").GetComponent<Slider>();
+        allAudioSlider = GameObject.Find("ALL_Slider").GetComponent<Slider>();
         
     }
 
@@ -35,6 +37,11 @@ public class Setting : MonoBehaviour
     public void SFXAudioSlider()
     {   
         AudioManager.instance.SFXAudioChange(sfxAudioSlider.value);
+    }
+
+    public void AudioSlider()
+    {
+        AudioManager.instance.AudioChange(allAudioSlider.value);
     }
 
 

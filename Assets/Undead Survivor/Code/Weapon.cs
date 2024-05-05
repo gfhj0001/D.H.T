@@ -37,6 +37,7 @@ public class Weapon : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
+
         switch (id) {
             case 0: //방패
                 transform.Rotate(Vector3.back * speed_sheild * Time.deltaTime);
@@ -79,14 +80,7 @@ public class Weapon : MonoBehaviour
                    Batch_whip();
                 }
                 break;
-            case 6: // 용암 
-                timer += Time.deltaTime;
-
-                if (timer > speed_LavaBucket)
-                {
-                    timer = 0f;
-                    Fire_LavaBucket();
-                }
+            case 6: // 용암
                 break;
         }
 }
@@ -103,8 +97,23 @@ public class Weapon : MonoBehaviour
                 // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
                 break;
             case 1: 
-                // Batch_hammer();
-                // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+                switch (count) { //망치 공속 증가
+                    case 1:
+                        GameManager.instance.hammerDelay = GameManager.instance.hammerDelay * (1f - 0.1f);
+                        break;
+                    case 2:
+                        GameManager.instance.hammerDelay = GameManager.instance.hammerDelay * (1f - 0.15f);
+                        break;
+                    case 3:
+                        GameManager.instance.hammerDelay = GameManager.instance.hammerDelay * (1f - 0.2f);
+                        break;
+                    case 4:
+                        GameManager.instance.hammerDelay = GameManager.instance.hammerDelay * (1f - 0.25f);
+                        break;
+                    default:
+                        GameManager.instance.hammerDelay = GameManager.instance.hammerDelay * (1f - 0.35f);
+                        break;
+                }
                 break;
             case 3:
                 switch (count) { //단검 레벨업시 공속 증가 로직.
@@ -147,8 +156,25 @@ public class Weapon : MonoBehaviour
                 }
             break;
             case 6: // 용암
+                GameManager.instance.lavaDamage = damage;
+                switch (count) { //채찍 공속 증가
+                    case 1:
+                        GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - 0.1f);
+                        break;
+                    case 2:
+                        GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - 0.15f);
+                        break;
+                    case 3:
+                        GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - 0.2f);
+                        break;
+                    case 4:
+                        GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - 0.25f);
+                        break;
+                    default:
+                        GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - 0.35f);
+                        break;
+                }
                 break;
-
         }
         level++;
     }
@@ -176,11 +202,10 @@ public class Weapon : MonoBehaviour
             case 0: //방패
                 speed_sheild = -150;
                 Batch_sheild();
-                
                 break;
             case 1: //망치
                 speed_hammer = 200;
-                GameManager.instance.hammerWaitingTime = 2.5f;
+                GameManager.instance.hammerDelay = 2.5f;
                 Batch_hammer();
                 GameManager.instance.StartHammerCorutine();
                 break;
@@ -198,12 +223,12 @@ public class Weapon : MonoBehaviour
                 Batch_whip();
                 break;
             case 6: // 용암 양동이
-                lavaAreaPrefab = data.projectile; // 용암 영역 프리팹 가져오기
-                speed_LavaBucket = 1f; // 1초에 1번 용암 양동이 투척
+                GameManager.instance.lavaDelay = 2f;
+                Fire_LavaBucket();
+                GameManager.instance.lavaDamage = data.baseDamage;
+                GameManager.instance.StartLavaBuckitCorutine();
                 break;
         }
-
-        // player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
 
     }
 
@@ -234,15 +259,10 @@ public class Weapon : MonoBehaviour
     {
         for (int index=0; index < count; index++){
             Transform bullet;
-
-            if (index < transform.childCount){ //기존 오브젝트를 활용하고, 모자란것을 풀링해서 가져오기.
-                bullet = transform.GetChild(index);
-            }
-            else{
-                bullet = GameManager.instance.Pool.Get(prefabId).transform;
-                bullet.parent = transform;
-            }
-           
+            
+            bullet = GameManager.instance.Pool.Get(prefabId).transform;
+            bullet.parent = transform;
+            
             bullet.localPosition = Vector3.zero;
             bullet.localRotation = Quaternion.identity;
 
@@ -259,6 +279,7 @@ public class Weapon : MonoBehaviour
             return;
 
         Vector3 targetPos = player.scanner.nearestTarget.position;
+
         Vector3 dir = targetPos - transform.position;
         dir = dir.normalized; //normalized, 벡터의 방향은 유지하고 크기를 1로 변환, 즉 총알이 나가고자 하는 방향임.
 
@@ -323,17 +344,6 @@ public class Weapon : MonoBehaviour
 
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
-    // IEnumerator ShowWhip()
-    // {
-    // leftwhip.SetActive(true);
-    // rightwhip.SetActive(true);
-    
-    // // 0.5초 동안 대기
-    // yield return new WaitForSeconds(0.5f);
-    
-    // leftwhip.SetActive(false);
-    // rightwhip.SetActive(false);
-    // }
 
 void Batch_whip()
 {
@@ -366,21 +376,17 @@ void Batch_whip()
 
     void Fire_LavaBucket()
     {
-        if (!player.scanner.nearestTarget)
-            return;
+        Transform bullet;
+        
+        bullet = GameManager.instance.Pool.Get(prefabId).transform; //프리펩을 bullet에 넣음.
+        bullet.parent = null;
 
-        Vector3 targetPos = player.scanner.nearestTarget.position;
+        bullet.localPosition = Vector3.zero;
+        bullet.localRotation = Quaternion.identity;
 
-        // 적 위치에 용암 생성 로직
-        GameObject lavaArea = Instantiate(lavaAreaPrefab, targetPos, Quaternion.identity);
-        DamageOverTimeArea dotArea = lavaArea.GetComponent<DamageOverTimeArea>();
-      
-
-        // 5초 후에 용암 제거
-        Destroy(lavaArea, 5f);
-
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
+        bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //-100 is Infinity per
     }
+
     IEnumerator whipdelay(GameObject bulletObject)
     {
         // 해당 총알 활성화
