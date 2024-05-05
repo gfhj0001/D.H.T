@@ -106,7 +106,7 @@ public class Item : MonoBehaviour
                     { //용암의 id
                         Weapon wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
                         currentDamage = wpn.damage;
-                        currentSpeed = GameManager.instance.hammerDelay;
+                        currentSpeed = GameManager.instance.lavaDelay;
                         currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
                         textLevel.text = "Lv." + wpn.level;
                         textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 뿌림";

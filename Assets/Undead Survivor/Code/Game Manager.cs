@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LavaBuckit_Active()
     {
-        Bullet lavaBuckitBullet = GameObject.Find("Bullet 5(Clone)").GetComponent<Bullet>();
+        Bullet lavaBuckitBullet = GameObject.Find("Bullet 6(Clone)").GetComponent<Bullet>();
         Transform bullet = lavaBuckitBullet.transform;
         float x;
         float y;
@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
             // AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege); 나중에 사운드 추가
             
             yield return new WaitForSeconds(5f);
-            lavaBuckitBullet = GameObject.Find("Bullet 5(Clone)").GetComponent<Bullet>();//lavaBuckit.GetComponentInChildren<Bullet>();
+            lavaBuckitBullet = GameObject.Find("Bullet 6(Clone)").GetComponent<Bullet>();//lavaBuckit.GetComponentInChildren<Bullet>();
 
             lavaBuckitBullet.gameObject.SetActive(false);
             yield return new WaitForSeconds(GameManager.instance.lavaDelay);

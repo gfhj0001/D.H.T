@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5900151871635772182}
   - component: {fileID: 4095292752590718788}
-  - component: {fileID: 6234950143069061965}
-  - component: {fileID: 1692821057475455794}
-  - component: {fileID: -9173196866709527739}
-  - component: {fileID: -2107202007414414567}
+  - component: {fileID: -2406189326832756756}
+  - component: {fileID: 875248468174973951}
+  - component: {fileID: 3366286499625504090}
   m_Layer: 0
   m_Name: Bullet 6
   m_TagString: Lava
@@ -29,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862675720181712372}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.0008726012, w: 0.99999964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4095292752590718788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 8129284061503589465, guid: 54068ca4da7364a4081c8702b668b4bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -88,34 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6234950143069061965
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862675720181712372}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &1692821057475455794
+--- !u!58 &-2406189326832756756
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,8 +121,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
---- !u!114 &-9173196866709527739
+  m_Radius: 2.3
+--- !u!114 &875248468174973951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,13 +131,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1862675720181712372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f40869f6032cb0e428958894e8bfabfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 066c64e617784ba40aecc455d3353c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  damageInterval: 1
-  duration: 5
---- !u!95 &-2107202007414414567
+  damage: 0
+  per: 0
+--- !u!95 &3366286499625504090
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
