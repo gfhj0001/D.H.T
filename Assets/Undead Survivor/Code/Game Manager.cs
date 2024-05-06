@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool flagDestroyWeapon = false; //무기 파괴 플래그
     public float lavaDamage;
     public float lavaDelay;
+    public float whipDelay;
     public Vector3 playerpos;
 
     void Awake()
@@ -159,6 +161,17 @@ public class GameManager : MonoBehaviour
     {
         StopCoroutine("LavaBuckit_Active");
     }
+
+    public void StartWhipCorutine()
+    {
+        StartCoroutine("SetWhipPos");
+    }
+
+    public void StopWhipCorutine()
+    {
+        StopCoroutine("SetWhipPos");
+        StopCoroutine("WhipDelay");
+    }
     
 
 
@@ -208,6 +221,44 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(GameManager.instance.lavaDelay);
         }
 
+    }
+
+    IEnumerator SetWhipPos()
+    {
+        Bullet[] whipBullet = GameObject.Find("Weapon 5").GetComponentsInChildren<Bullet>();
+        Transform[] bullets = { whipBullet[0].transform, whipBullet[1].transform };
+        WaitForFixedUpdate wait = new WaitForFixedUpdate();
+        
+        bullets[0].gameObject.SetActive(true);
+        bullets[1].gameObject.SetActive(true);
+        StartCoroutine("WhipDelay");
+
+        while(true)
+        {
+            Transform playertransform = GameObject.Find("Player").transform;
+
+            Vector3 addX = new Vector3 (1f, 0f, 0f);
+
+            //채찍의 위치를 플레이어로 옮긴 후, x축으로 1만큼 간격을 줌.
+            bullets[1].position = playertransform.position + addX;
+            bullets[0].position = playertransform.position + addX * -1f;
+
+            yield return wait; //1프레임 기다림.
+        }
+    }
+
+    IEnumerator WhipDelay()
+    {
+        Weapon whip = GameObject.Find("Weapon 5").GetComponent<Weapon>();
+        Bullet[] whipBullet = GameObject.Find("Weapon 5").GetComponentsInChildren<Bullet>();
+        Transform[] bullets = { whipBullet[0].transform, whipBullet[1].transform };
+        while (true)
+        {
+            whip.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.3f); //애니메이션 시간
+            whip.gameObject.SetActive(false);
+            yield return new WaitForSeconds(whipDelay); //공격 대기 시간
+        }
     }
 
 }

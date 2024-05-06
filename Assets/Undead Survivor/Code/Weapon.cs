@@ -67,12 +67,6 @@ public class Weapon : MonoBehaviour
                 }
                 break;
             case 5: // 채찍
-                timer += Time.deltaTime;
-                if (timer > speed_whip)
-                {
-                   timer = 0f;
-                   Batch_whip();
-                }
                 break;
             case 6: // 용암
                 break;
@@ -126,27 +120,10 @@ public class Weapon : MonoBehaviour
                         break;
                 }
                 break;
-            case 4: // 모루 [레벨업시 공속증가 X]
+            case 4: 
                 break;
             case 5:
-                // switch (count) { //채찍 공속 증가 | 추가 해야되나?
-                //     case 1:
-                //         speed_whip = speed_whip * (1f - 0.05f);
-                //         break;
-                //     case 2:
-                //         speed_whip = speed_whip * (1f - 0.06f);
-                //         break;
-                //     case 3:
-                //         speed_whip = speed_whip * (1f - 0.08f);
-                //         break;
-                //     case 4:
-                //         speed_whip = speed_whip * (1f - 0.1f);
-                //         break;
-                //     default:
-                //         speed_whip = speed_whip * (1f - 0.15f);
-                //         break;
-                // }
-            break;
+                break;
             case 6: // 용암
                 GameManager.instance.lavaDamage = damage;
                 switch (count) {
@@ -211,8 +188,9 @@ public class Weapon : MonoBehaviour
                 speed_Anvil = 1f; 
                 break;
             case 5: // 채찍
-                speed_whip = 1.5f; //2초에 한번 휘두름.
+                GameManager.instance.whipDelay = 1.5f;
                 Batch_whip();
+                GameManager.instance.StartWhipCorutine();
                 break;
             case 6: // 용암 양동이
                 GameManager.instance.lavaDelay = 2f;
@@ -337,34 +315,31 @@ public class Weapon : MonoBehaviour
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
     }
 
-void Batch_whip()
-{
-    for (int index = 0; index < count; index++)
+    void Batch_whip()
     {
-        Transform bullet;
-
-        if (index < transform.childCount)
+        for (int index = 0; index < count; index++)
         {
-            bullet = transform.GetChild(index);
+            Transform bullet;
+
+            if (index < transform.childCount)
+            {
+                bullet = transform.GetChild(index);
+            }
+            else
+            {
+                bullet = GameManager.instance.Pool.Get(prefabId).transform;
+                bullet.parent = transform;
+            }
+
+            bullet.localPosition = Vector3.zero;
+            bullet.localRotation = Quaternion.identity;
+
+            Vector3 rotVec = Vector3.forward * (360 * index / count + 90);
+            bullet.Rotate(rotVec);
+            bullet.Translate(bullet.up * 1f, Space.World);
+            bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero);
         }
-        else
-        {
-            bullet = GameManager.instance.Pool.Get(prefabId).transform;
-            bullet.parent = transform;
-        }
-
-        bullet.localPosition = Vector3.zero;
-        bullet.localRotation = Quaternion.identity;
-
-        Vector3 rotVec = Vector3.forward * (360 * index / count + 90);
-        bullet.Rotate(rotVec);
-        bullet.Translate(bullet.up * 1f, Space.World);
-        bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero);
-
-        // 비활성화 코루틴 시작, 해당 총알의 Weapon을 전달
-        StartCoroutine(whipdelay(bullet.gameObject));
     }
-}
 
     void Fire_LavaBucket()
     {
@@ -379,13 +354,4 @@ void Batch_whip()
         bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //-100 is Infinity per
     }
 
-    IEnumerator whipdelay(GameObject bulletObject)
-    {
-        // 해당 총알 활성화
-        bulletObject.SetActive(true);
-
-        // 0.3초 대기 후 비활성화
-        yield return new WaitForSeconds(0.3f);
-        bulletObject.SetActive(false);
-    }
 }

@@ -117,7 +117,7 @@ public class Item : MonoBehaviour
         { //채찍의 id
             Weapon wpn = GameObject.Find("Weapon 5").GetComponent<Weapon>();
             currentDamage = wpn.damage;
-            currentSpeed = wpn.speed_whip;
+            currentSpeed = GameManager.instance.whipDelay;
             currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             textLevel.text = "Lv." + wpn.level;
             textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 휘두름" + "\n";
@@ -299,6 +299,7 @@ public class Item : MonoBehaviour
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 5: // 채찍
+                GameManager.instance.StopWhipCorutine();
                 wpn = GameObject.Find("Weapon 5").GetComponent<Weapon>();
                 blt = GameObject.Find("Weapon 5").GetComponentsInChildren<Bullet>(true);
                 foreach (Bullet b in blt)
@@ -314,6 +315,7 @@ public class Item : MonoBehaviour
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 6: // 용암
+                GameManager.instance.StopLavaBuckitCorutine();
                 wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
                 wpn.gameObject.SetActive(false);
                 Destroy(wpn);
