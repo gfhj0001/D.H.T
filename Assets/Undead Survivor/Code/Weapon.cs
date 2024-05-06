@@ -37,7 +37,6 @@ public class Weapon : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
-
         switch (id) {
             case 0: //방패
                 transform.Rotate(Vector3.back * speed_sheild * Time.deltaTime);
@@ -47,7 +46,6 @@ public class Weapon : MonoBehaviour
                 break;
             case 2: //창
                 timer += Time.deltaTime;
-
                 if (timer > speed) {
                     timer = 0f;
                     Fire();
@@ -55,7 +53,6 @@ public class Weapon : MonoBehaviour
                 break;
             case 3: //단검
                 timer += Time.deltaTime;
-
                 if (timer > speed_knife) {
                     timer = 0f;
                     Fire_knife();
@@ -63,7 +60,6 @@ public class Weapon : MonoBehaviour
                 break;
             case 4: // 모루
                 timer += Time.deltaTime;
-
                 if (timer > speed_Anvil)
                 {
                     timer = 0f;
@@ -71,9 +67,7 @@ public class Weapon : MonoBehaviour
                 }
                 break;
             case 5: // 채찍
-
                 timer += Time.deltaTime;
-
                 if (timer > speed_whip)
                 {
                    timer = 0f;
@@ -87,10 +81,8 @@ public class Weapon : MonoBehaviour
 
     public void LevelUp(float damage, int count)
     {
-
         this.damage = damage;
         this.count += count;
-
         switch (id) {
             case 0:
                 Batch_sheild();
@@ -137,27 +129,27 @@ public class Weapon : MonoBehaviour
             case 4: // 모루 [레벨업시 공속증가 X]
                 break;
             case 5:
-                switch (count) { //채찍 공속 증가
-                    case 1:
-                        speed_whip = speed_whip * (1f - 0.1f);
-                        break;
-                    case 2:
-                        speed_whip = speed_whip * (1f - 0.15f);
-                        break;
-                    case 3:
-                        speed_whip = speed_whip * (1f - 0.2f);
-                        break;
-                    case 4:
-                        speed_whip = speed_whip * (1f - 0.25f);
-                        break;
-                    default:
-                        speed_whip = speed_whip * (1f - 0.35f);
-                        break;
-                }
+                // switch (count) { //채찍 공속 증가 | 추가 해야되나?
+                //     case 1:
+                //         speed_whip = speed_whip * (1f - 0.05f);
+                //         break;
+                //     case 2:
+                //         speed_whip = speed_whip * (1f - 0.06f);
+                //         break;
+                //     case 3:
+                //         speed_whip = speed_whip * (1f - 0.08f);
+                //         break;
+                //     case 4:
+                //         speed_whip = speed_whip * (1f - 0.1f);
+                //         break;
+                //     default:
+                //         speed_whip = speed_whip * (1f - 0.15f);
+                //         break;
+                // }
             break;
             case 6: // 용암
                 GameManager.instance.lavaDamage = damage;
-                switch (count) { //채찍 공속 증가
+                switch (count) {
                     case 1:
                         GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - 0.1f);
                         break;
@@ -200,7 +192,7 @@ public class Weapon : MonoBehaviour
 
         switch (id) {
             case 0: //방패
-                speed_sheild = -150;
+                speed_sheild = -125;
                 Batch_sheild();
                 break;
             case 1: //망치
@@ -219,7 +211,7 @@ public class Weapon : MonoBehaviour
                 speed_Anvil = 1f; 
                 break;
             case 5: // 채찍
-                speed_whip = 2f; 
+                speed_whip = 1.5f; //2초에 한번 휘두름.
                 Batch_whip();
                 break;
             case 6: // 용암 양동이
@@ -250,7 +242,7 @@ public class Weapon : MonoBehaviour
 
             Vector3 rotVec = Vector3.forward * 360 * index / count;
             bullet.Rotate(rotVec);
-            bullet.Translate(bullet.up * 1.7f, Space.World);
+            bullet.Translate(bullet.up * 3f, Space.World);
             bullet.GetComponent<Bullet>().Init(damage, -100, Vector3.zero); //-100 is Infinity per
         }
     }

@@ -127,6 +127,7 @@ public class Gear : MonoBehaviour
                     weapon.speed_Anvil = weapon.speed_Anvil * (1f - rate);
                     break;
                 case 5:
+                    weapon.speed_whip = weapon.speed_whip * (1f - rate);
                     break;
                 case 6 :
                     GameManager.instance.lavaDelay = GameManager.instance.lavaDelay * (1f - rate);

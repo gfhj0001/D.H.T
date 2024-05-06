@@ -69,12 +69,13 @@ public class LevelUp : MonoBehaviour
             item.gameObject.SetActive(false);
         }
 
+
         // 2. 그 중에서 랜덤하게 3개 아이템만 활성화
         int[] ran = new int[3];
         while (true) {
-            ran[0] = Random.Range(0, 4);
-            ran[1] = Random.Range(0, 4);
-            ran[2] = Random.Range(0, 4);
+            ran[0] = Random.Range(0, 7);
+            ran[1] = Random.Range(0, 7);
+            ran[2] = Random.Range(0, 7);
 
             if (ran[0] != ran[1] && ran[1] != ran[2] && ran[0] != ran[2])
                 break;    
@@ -310,7 +311,7 @@ public class LevelUp : MonoBehaviour
 
     public void OnClick_DestroyButton() 
     {
-        GameManager.instance.flagDestroyWeapon = 1;
+        GameManager.instance.flagDestroyWeapon = true;
 
         rectSelectPanel.gameObject.SetActive(false);
         rectDestroyPanel.gameObject.SetActive(true);
@@ -365,7 +366,7 @@ public class LevelUp : MonoBehaviour
     }
 
     public void OnClick_PreviousButton() {
-        GameManager.instance.flagDestroyWeapon = 0;
+        GameManager.instance.flagDestroyWeapon = false;
 
         rectSelectPanel.gameObject.SetActive(true);
         rectDestroyPanel.gameObject.SetActive(false);

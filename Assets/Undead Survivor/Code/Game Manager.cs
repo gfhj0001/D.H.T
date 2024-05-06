@@ -36,9 +36,10 @@ public class GameManager : MonoBehaviour
 
     [Header("# ETC..")]
     public float hammerDelay;
-    public int flagDestroyWeapon = 0; //무기 파괴 플래그
+    public bool flagDestroyWeapon = false; //무기 파괴 플래그
     public float lavaDamage;
     public float lavaDelay;
+    public Vector3 playerpos;
 
     void Awake()
     {
@@ -109,6 +110,8 @@ public class GameManager : MonoBehaviour
             gameTime = maxGameTime;
             GameVictory();
         }
+
+        playerpos = player.transform.position;
     }
 
     public void GetExp()

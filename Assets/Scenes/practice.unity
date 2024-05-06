@@ -15440,25 +15440,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spawnTime: 0.3
+  - spawnTime: 0.5
     spriteType: 0
     health: 10
-    speed: 1.5
-  - spawnTime: 0.4
+    speed: 2
+  - spawnTime: 0.6
     spriteType: 1
     health: 15
     speed: 2.5
-  - spawnTime: 0.4
+  - spawnTime: 0.7
     spriteType: 2
     health: 30
     speed: 3
   - spawnTime: 1
     spriteType: 3
     health: 50
-    speed: 4
+    speed: 3.5
   - spawnTime: 5
     spriteType: 4
-    health: 100
+    health: 200
     speed: 4
 --- !u!1 &714119717
 GameObject:
@@ -32783,6 +32783,7 @@ Transform:
   - {fileID: 1221472036}
   - {fileID: 1681393554}
   - {fileID: 705240965}
+  - {fileID: 2006004633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1447595603
@@ -32833,7 +32834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputVec: {x: 0, y: 0}
-  speed: 5
+  speed: 4
   scanner: {fileID: 0}
 --- !u!114 &1447595606
 MonoBehaviour:
@@ -34817,7 +34818,7 @@ MonoBehaviour:
   maxGameTime: 500
   gameLevel: 0
   health: 0
-  maxHealth: 1000
+  maxHealth: 500
   itemWeapons: []
   destroyWeapon: {fileID: 0}
   itemGems: []
@@ -34826,7 +34827,7 @@ MonoBehaviour:
   level: 0
   kill: 0
   exp: 0
-  nextExp: 03000000030000000300000003000000030000000300000003000000030000000300000003000000
+  nextExp: 03000000050000000a000000320000006400000096000000d20000001801000068010000c201000058020000
   Pool: {fileID: 210477383}
   player: {fileID: 1447595604}
   uiLevelUp: {fileID: 948081000}
@@ -34836,6 +34837,7 @@ MonoBehaviour:
   flagDestroyWeapon: 0
   lavaDamage: 0
   lavaDelay: 0
+  playerpos: {x: 0, y: 0, z: 0}
 --- !u!1 &1603837928
 GameObject:
   m_ObjectHideFlags: 0
@@ -35492,7 +35494,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 20}
+  m_Size: {x: 23, y: 23}
   m_EdgeRadius: 0
 --- !u!1 &1693001163
 GameObject:
@@ -42220,7 +42222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006004631}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -42230,7 +42232,7 @@ Transform:
   - {fileID: 497158982}
   - {fileID: 730599715}
   - {fileID: 217320914}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1447595602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2011548835
 GameObject:
@@ -43606,6 +43608,5 @@ SceneRoots:
   - {fileID: 1598498433}
   - {fileID: 210477384}
   - {fileID: 356416837}
-  - {fileID: 2006004633}
   - {fileID: 1447595602}
   - {fileID: 818455329}

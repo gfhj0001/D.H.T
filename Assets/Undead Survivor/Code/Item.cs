@@ -40,84 +40,22 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
 
-                if (GameManager.instance.flagDestroyWeapon == 1) {
-                    if (data.itmeId == 0)
-                    { //방패의 id
-                        Weapon wpn = GameObject.Find("Weapon 0").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentCount = wpn.count;
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개";
-                        break;
-                    }
-                    else if (data.itmeId == 1)
-                    { //망치의 id
-                        Weapon wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentSpeed = GameManager.instance.hammerDelay;
-                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
-                        currentCount = wpn.count;
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사";
-                        break;
-                    }
-                    else if (data.itmeId == 2)
-                    { //창의 id
-                        Weapon wpn = GameObject.Find("Weapon 2").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentSpeed = wpn.speed;
-                        currentCount = wpn.count;
-                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : " + currentCount.ToString();
-                        break;
-                    }
-                    else if (data.itmeId == 3)
-                    { //단검의 id
-                        Weapon wpn = GameObject.Find("Weapon 3").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentSpeed = wpn.speed_knife;
-                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 0";
-                        break;
-                    }
-                    else if (data.itmeId == 4)
-                    { //모루의 id
-                        Weapon wpn = GameObject.Find("Weapon 4").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentSpeed = wpn.speed_Anvil;
-                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 던짐" + "\n" + "관통력 : 99";
-                        break;
-                    }
-                    else if (data.itmeId == 5)
-                    { //채찍의 id
-                        Weapon wpn = GameObject.Find("Weapon 5").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentSpeed = wpn.speed_whip;
-                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 휘두름" + "\n" ;
-                        break;
-                    }
-                    else if (data.itmeId == 6)
-                    { //용암의 id
-                        Weapon wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
-                        currentDamage = wpn.damage;
-                        currentSpeed = GameManager.instance.lavaDelay;
-                        currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
-                        textLevel.text = "Lv." + wpn.level;
-                        textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 뿌림";
-                        break;
-                    }
+                if (GameManager.instance.flagDestroyWeapon == true) {
+                    SetDestroyDesc(data);
+                    break;
                 }
-                textLevel.text = "Lv." + (level + 1);
+
+                if (level == 0) {
+                    SetFirstDesc(data);
+                    textLevel.text = "Lv." + (level + 1);
+                    break;
+                }
+
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100, data.counts[level]);
+                textLevel.text = "Lv." + (level + 1);
                 break;
             case ItemData.ItemType.Gem:
-            textLevel.text = "Lv." + (level + 1);
+                textLevel.text = "Lv." + (level + 1);
                 textDesc.text = string.Format(data.itemDesc, data.damages[level] * 100);
                 break;
             default:
@@ -127,9 +65,111 @@ public class Item : MonoBehaviour
         }
     }
 
+    public void SetDestroyDesc(ItemData data)
+    {
+        if (data.itmeId == 0)
+        { //방패의 id
+            Weapon wpn = GameObject.Find("Weapon 0").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentCount = wpn.count;
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개";
+        }
+        else if (data.itmeId == 1)
+        { //망치의 id
+            Weapon wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentSpeed = GameManager.instance.hammerDelay;
+            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+            currentCount = wpn.count;
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사";
+        }
+        else if (data.itmeId == 2)
+        { //창의 id
+            Weapon wpn = GameObject.Find("Weapon 2").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentSpeed = wpn.speed;
+            currentCount = wpn.count;
+            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : " + currentCount.ToString();
+        }
+        else if (data.itmeId == 3)
+        { //단검의 id
+            Weapon wpn = GameObject.Find("Weapon 3").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentSpeed = wpn.speed_knife;
+            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 0";
+        }
+        else if (data.itmeId == 4)
+        { //모루의 id
+            Weapon wpn = GameObject.Find("Weapon 4").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentSpeed = wpn.speed_Anvil;
+            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 던짐" + "\n" + "관통력 : 99";
+        }
+        else if (data.itmeId == 5)
+        { //채찍의 id
+            Weapon wpn = GameObject.Find("Weapon 5").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentSpeed = wpn.speed_whip;
+            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 휘두름" + "\n";
+        }
+        else if (data.itmeId == 6)
+        { //용암의 id
+            Weapon wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
+            currentDamage = wpn.damage;
+            currentSpeed = GameManager.instance.lavaDelay;
+            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
+            textLevel.text = "Lv." + wpn.level;
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 뿌림";
+        }
+    }
+
+
+    public void SetFirstDesc(ItemData data)
+{
+    if (data.itmeId == 0)
+        { //방패의 id
+            int num = data.baseCount;
+            textDesc.text = "주위를 회전하는 방패 " + num.ToString() + "개 소환";
+        }
+        else if (data.itmeId == 1)
+        { //망치의 id
+            textDesc.text = "나선형으로 회전하는" + "\n" + "망치 1개 소환";
+        }
+        else if (data.itmeId == 2)
+        { //창의 id
+            textDesc.text = "적을 관통하는 창을 투척";
+        }
+        else if (data.itmeId == 3)
+        { //단검의 id
+            textDesc.text = "가까운적 주변으로" + "\n" + "단검을 빠르게 투척";
+        }
+        else if (data.itmeId == 4)
+        { //모루의 id
+            textDesc.text = "모루 1개 투척";
+        }
+        else if (data.itmeId == 5)
+        { //채찍의 id
+            textDesc.text = "적을 관통하는 채찍을 휘두름";
+        }
+        else if (data.itmeId == 6)
+        { //용암의 id
+            textDesc.text = "바닥에 용암을 뿌림";
+        }
+}
+
     public void OnClick()
     {
-        if (GameManager.instance.flagDestroyWeapon == 1) {
+        if (GameManager.instance.flagDestroyWeapon == true) {
             OnClickedButtonDstWpn ();
         } else {
             OnClickedButtonLvUp ();
@@ -197,7 +237,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 1: // 망치
@@ -212,7 +252,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 2: // 창
@@ -226,7 +266,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 3: // 단검
@@ -240,7 +280,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 4: // 모루
@@ -255,7 +295,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 5: // 채찍
@@ -270,7 +310,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 6: // 용암
@@ -279,7 +319,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = 0;
+                GameManager.instance.flagDestroyWeapon = true;
                 GameManager.instance.destroyWeapon = data;
                 break;
 
