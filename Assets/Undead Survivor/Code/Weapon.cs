@@ -312,7 +312,7 @@ public class Weapon : MonoBehaviour
         Anvil.rotation = Quaternion.FromToRotation(Vector3.up, dir); // 방향을 중간 방향으로 설정
         Anvil.GetComponent<Bullet>().Init(damage, count, dir); // 스틸볼에게 방향 설정
 
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege);
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.blacksmthhammer);
     }
 
     void Batch_whip()

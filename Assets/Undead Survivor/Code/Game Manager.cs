@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
             tmp = playertransform.position + pos;
             bullet.position = tmp;
             lavaBuckitBullet.gameObject.SetActive(true);
-            // AudioManager.instance.PlaySfx(AudioManager.Sfx.Ranege); 나중에 사운드 추가
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.lava);
             
             yield return new WaitForSeconds(5f);
             lavaBuckitBullet = GameObject.Find("Bullet 6(Clone)").GetComponent<Bullet>();//lavaBuckit.GetComponentInChildren<Bullet>();
