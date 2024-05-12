@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Result uiResult;
     public GameObject enemyCleaner;
+    public Transform uiJoy;
 
     [Header("# ETC..")]
     public float hammerDelay;
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
 
         AudioManager.instance.PlayBgm(true);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+        player.gameObject.SetActive(true);
     }
 
     public void GameOver()
@@ -134,12 +136,14 @@ public class GameManager : MonoBehaviour
     {
         isLive = false;
         Time.timeScale = 0; //흐르는 시간의 배율, **타임스케일로 배속 가능.**
+        uiJoy.localScale = Vector3.zero;
     }
 
     public void Resume()
     {
         isLive = true;
         Time.timeScale = 1;
+        uiJoy.localScale = Vector3.one;
     }
 
     public void StartHammerCorutine()
