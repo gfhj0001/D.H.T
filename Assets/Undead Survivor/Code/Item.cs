@@ -80,10 +80,9 @@ public class Item : MonoBehaviour
             Weapon wpn = GameObject.Find("Weapon 1").GetComponent<Weapon>();
             currentDamage = wpn.damage;
             currentSpeed = GameManager.instance.hammerDelay;
-            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             currentCount = wpn.count;
             textLevel.text = "Lv." + wpn.level;
-            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "회전체 : " + currentCount.ToString() + "개" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사";
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 소환";
         }
         else if (data.itmeId == 2)
         { //창의 id
@@ -91,45 +90,40 @@ public class Item : MonoBehaviour
             currentDamage = wpn.damage;
             currentSpeed = wpn.speed;
             currentCount = wpn.count;
-            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             textLevel.text = "Lv." + wpn.level;
-            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : " + currentCount.ToString();
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 투척" + "\n" + "관통력 : " + currentCount.ToString();
         }
         else if (data.itmeId == 3)
         { //단검의 id
             Weapon wpn = GameObject.Find("Weapon 3").GetComponent<Weapon>();
             currentDamage = wpn.damage;
             currentSpeed = wpn.speed_knife;
-            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             textLevel.text = "Lv." + wpn.level;
-            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 발사" + "\n" + "관통력 : 0";
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 투척" + "\n" + "관통력 : 0";
         }
         else if (data.itmeId == 4)
         { //모루의 id
             Weapon wpn = GameObject.Find("Weapon 4").GetComponent<Weapon>();
             currentDamage = wpn.damage;
             currentSpeed = wpn.speed_Anvil;
-            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             textLevel.text = "Lv." + wpn.level;
-            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 던짐" + "\n" + "관통력 : 99";
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 투척" + "\n" + "관통력 : 99";
         }
         else if (data.itmeId == 5)
         { //채찍의 id
             Weapon wpn = GameObject.Find("Weapon 5").GetComponent<Weapon>();
             currentDamage = wpn.damage;
             currentSpeed = GameManager.instance.whipDelay;
-            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             textLevel.text = "Lv." + wpn.level;
-            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 휘두름" + "\n";
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 휘두름";
         }
         else if (data.itmeId == 6)
         { //용암의 id
             Weapon wpn = GameObject.Find("Weapon 6").GetComponent<Weapon>();
             currentDamage = wpn.damage;
             currentSpeed = GameManager.instance.lavaDelay;
-            currentSpeed = (float)(Math.Floor((1 / currentSpeed) * 10f) / 10f);
             textLevel.text = "Lv." + wpn.level;
-            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : 1초에 " + currentSpeed.ToString() + "번 뿌림";
+            textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 뿌림";
         }
     }
 

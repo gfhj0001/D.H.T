@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
     {
         isLive = false;
 
+        //용암 양동이 프리셋이 Player 오브젝트 밖에 있기 때문에 게임 오버시 비활성화 해줘야 함.
+        Bullet lavaBuckitBullet = GameObject.Find("Bullet 6(Clone)").GetComponent<Bullet>();
+        lavaBuckitBullet.gameObject.SetActive(false);
+        
         yield return new WaitForSeconds(0.5f);
 
         uiResult.gameObject.SetActive(true);
@@ -184,16 +188,16 @@ public class GameManager : MonoBehaviour
         Weapon hammer = GameObject.Find("Weapon 1").GetComponent<Weapon>();
         Bullet hammerBullet = hammer.GetComponentInChildren<Bullet>();
         Transform bullet = hammerBullet.transform;
-        hammer.gameObject.SetActive(false);
+        hammer.gameObject.SetActive(true);
         while (true) {
-            hammer.gameObject.SetActive(true);
+            hammerBullet.gameObject.SetActive(true);
             bullet.localPosition = Vector3.zero;
             bullet.Translate(bullet.up * 1, Space.World);
             for(int index = 1; index < 200; index++){
                 bullet.Translate(bullet.up * 0.0005f * index , Space.World);
                 yield return new WaitForSeconds(0.03f);
             }
-            hammer.gameObject.SetActive(false);
+            hammerBullet.gameObject.SetActive(false);
             yield return new WaitForSeconds(hammerDelay);
             //3초동안 망치 비활성화
         }
@@ -253,14 +257,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WhipDelay()
     {
-        Weapon whip = GameObject.Find("Weapon 5").GetComponent<Weapon>();
         Bullet[] whipBullet = GameObject.Find("Weapon 5").GetComponentsInChildren<Bullet>();
-        Transform[] bullets = { whipBullet[0].transform, whipBullet[1].transform };
         while (true)
         {
-            whip.gameObject.SetActive(true);
+            whipBullet[0].gameObject.SetActive(true);
+            whipBullet[1].gameObject.SetActive(true);
             yield return new WaitForSeconds(0.3f); //애니메이션 시간
-            whip.gameObject.SetActive(false);
+            whipBullet[0].gameObject.SetActive(false);
+            whipBullet[1].gameObject.SetActive(false);
             yield return new WaitForSeconds(whipDelay); //공격 대기 시간
         }
     }
