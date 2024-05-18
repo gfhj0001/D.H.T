@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
 
-                if (GameManager.instance.flagDestroyWeapon == true) {
+                if (GameManager.instance.flagDestroyWeapon == 1) {
                     SetDestroyDesc(data);
                     break;
                 }
@@ -97,7 +97,8 @@ public class Item : MonoBehaviour
         { //단검의 id
             Weapon wpn = GameObject.Find("Weapon 3").GetComponent<Weapon>();
             currentDamage = wpn.damage;
-            currentSpeed = wpn.speed_knife;
+            currentSpeed = Mathf.Floor(wpn.speed_knife * 100f) /  100f;
+
             textLevel.text = "Lv." + wpn.level;
             textDesc.text = "데미지 : " + currentDamage.ToString() + "\n" + "공격 속도 : " + currentSpeed.ToString() + "초 마다 투척" + "\n" + "관통력 : 0";
         }
@@ -163,7 +164,7 @@ public class Item : MonoBehaviour
 
     public void OnClick()
     {
-        if (GameManager.instance.flagDestroyWeapon == true) {
+        if (GameManager.instance.flagDestroyWeapon == 1) {
             OnClickedButtonDstWpn ();
         } else {
             OnClickedButtonLvUp ();
@@ -231,7 +232,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 1: // 망치
@@ -246,7 +247,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 2: // 창
@@ -260,7 +261,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 3: // 단검
@@ -274,7 +275,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 4: // 모루
@@ -289,7 +290,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 5: // 채찍
@@ -305,7 +306,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
             case 6: // 용암
@@ -315,7 +316,7 @@ public class Item : MonoBehaviour
                 Destroy(wpn);
                 rectDestroyPanel.gameObject.SetActive(false);
                 GameManager.instance.itemWeapons.Remove(data);
-                GameManager.instance.flagDestroyWeapon = true;
+                GameManager.instance.flagDestroyWeapon = -99;
                 GameManager.instance.destroyWeapon = data;
                 break;
 

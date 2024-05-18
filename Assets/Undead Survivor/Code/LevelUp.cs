@@ -89,6 +89,9 @@ public class LevelUp : MonoBehaviour
 
     public void Show()
     {
+        // if (GameManager.instance.flagDestroyWeapon == false) {
+        //     rectSelectPanel.gameObject.SetActive(true);
+        // }
         rectSelectPanel.gameObject.SetActive(true);
         rectDestroyPanel.gameObject.SetActive(false);
         rectSelectPanel.localScale = Vector3.one;
@@ -311,7 +314,7 @@ public class LevelUp : MonoBehaviour
 
     public void OnClick_DestroyButton() 
     {
-        GameManager.instance.flagDestroyWeapon = true;
+        GameManager.instance.flagDestroyWeapon = 1;
 
         rectSelectPanel.gameObject.SetActive(false);
         rectDestroyPanel.gameObject.SetActive(true);
@@ -366,7 +369,7 @@ public class LevelUp : MonoBehaviour
     }
 
     public void OnClick_PreviousButton() {
-        GameManager.instance.flagDestroyWeapon = false;
+        GameManager.instance.flagDestroyWeapon = 0;
 
         rectSelectPanel.gameObject.SetActive(true);
         rectDestroyPanel.gameObject.SetActive(false);

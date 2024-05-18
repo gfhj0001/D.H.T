@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     [Header("# ETC..")]
     public float hammerDelay;
-    public bool flagDestroyWeapon = false; //무기 파괴 플래그
+    public int flagDestroyWeapon = 0; //무기 파괴 플래그 0 = 파괴X / 1 = 무기 파괴 화면 진입 상태. / -99 = 이미 무기를 파괴한 상태
     public float lavaDamage;
     public float lavaDelay;
     public float whipDelay;
