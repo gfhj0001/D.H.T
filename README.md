@@ -85,10 +85,13 @@ Num|Module Name|Module Comment
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/b656d641-58a2-4407-a6c7-708539fd5080)
 
 ## ★ 프로젝트 화면 구성
-![image](https://github.com/gfhj0001/Practice/assets/63450214/9b99c524-2fbb-4aec-8146-d5dac9235e48)
-![336775497-3b01a0a1-4c39-425d-a3d1-03dd951f2a19](https://github.com/gfhj0001/D.H.T/assets/52391631/4e09404b-e01b-4bd6-a273-a8a55a7eb7ed)
-![image](https://github.com/gfhj0001/Practice/assets/63450214/9f6b6285-06a9-4a8a-b24e-48f440728dd3)
-![image](https://github.com/gfhj0001/Practice/assets/63450214/d7a80e16-4f71-4707-abbe-58b6e37c514a)
+![image](https://github.com/gfhj0001/D.H.T/assets/52391631/16da7e25-ceb5-43b2-907c-774e71057568)
+![image](https://github.com/gfhj0001/D.H.T/assets/52391631/dd61205f-311c-4fe7-8c98-1c275750494e)
+![image](https://github.com/gfhj0001/D.H.T/assets/52391631/fba26ebe-105b-4f35-a0a2-2179afb4fb74)
+![image](https://github.com/gfhj0001/D.H.T/assets/52391631/b47c4ff8-5fc3-4cdd-9be3-6934e0945154)
+
+
+
 
 
 
