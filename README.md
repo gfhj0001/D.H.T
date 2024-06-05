@@ -57,13 +57,13 @@ Num|Module Name|Module Comment
 무기 공격방식 GIF 추가 예정
 
 ## ★ 보석 능력치 구성
-![image](https://github.com/gfhj0001/Practice/assets/63450214/7ac260ac-b1e2-4e2c-b4dc-01e97154bf70)
+![image](https://github.com/gfhj0001/Practice/assets/63450214/9dcd3aa5-60da-4a29-9e68-bed8bd7d65a0)
 
 ## ★ 적 캐릭터 구성
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/6e2999a8-8c80-4c75-ae7d-c78ee179944b)
 
 ## ★ 맵 구성
-![image](https://github.com/gfhj0001/Practice/assets/63450214/73fbc44c-a1b1-4fbf-92ce-0da2e004daa6)
+![image](https://github.com/gfhj0001/Practice/assets/63450214/b656d641-58a2-4407-a6c7-708539fd5080)
 
 ## ★ 프로젝트 화면 구성
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/9b99c524-2fbb-4aec-8146-d5dac9235e48)
