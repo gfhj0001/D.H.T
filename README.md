@@ -66,7 +66,14 @@ Num|Module Name|Module Comment
 
 ## ★ 플레이어 장비 구성
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/b6930183-1010-49ec-ba10-7bce3f677fce)
-무기 공격방식 GIF 추가 예정
+![1](https://github.com/gfhj0001/D.H.T/assets/52391631/88ec29d8-b999-4066-be6a-7913ee651c1b)
+![2](https://github.com/gfhj0001/D.H.T/assets/52391631/d787d864-48d4-4794-ad5a-3e4b3e18455a)
+![3](https://github.com/gfhj0001/D.H.T/assets/52391631/567e88ea-16df-4fc9-97c4-21b21c5cb679)
+![4](https://github.com/gfhj0001/D.H.T/assets/52391631/ff98f9c2-3d87-48bd-92f8-16cab6d1deab)
+
+
+
+
 
 ## ★ 보석 능력치 구성
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/9dcd3aa5-60da-4a29-9e68-bed8bd7d65a0)
@@ -79,7 +86,9 @@ Num|Module Name|Module Comment
 
 ## ★ 프로젝트 화면 구성
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/9b99c524-2fbb-4aec-8146-d5dac9235e48)
-![image](https://github.com/gfhj0001/Practice/assets/63450214/3b01a0a1-4c39-425d-a3d1-03dd951f2a19)
+![336775497-3b01a0a1-4c39-425d-a3d1-03dd951f2a19](https://github.com/gfhj0001/D.H.T/assets/52391631/4e09404b-e01b-4bd6-a273-a8a55a7eb7ed)
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/9f6b6285-06a9-4a8a-b24e-48f440728dd3)
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/d7a80e16-4f71-4707-abbe-58b6e37c514a)
+
+
 
