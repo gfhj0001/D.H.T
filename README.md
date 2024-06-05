@@ -28,9 +28,9 @@
 
 |University|Student Name|Responsibility|E-Mail|
 |:------------:|:--------:|:---------:|:------:|
-|성결대학교</br> IT대학 컴퓨터학부|김승우| |gfhj0001@naver.com|
-|성결대학교</br> IT대학 컴퓨터학부|김재훈| |miliys2004@naver.com|
-|성결대학교</br> IT대학 컴퓨터학부|이진혁| |jhlee00987@sungkyul.ac.kr|
+|성결대학교</br> IT대학 컴퓨터공학과|김승우| |gfhj0001@naver.com|
+|성결대학교</br> IT대학 컴퓨터공학과|김재훈| |miliys2004@naver.com|
+|성결대학교</br> IT대학 컴퓨터공학과|이진혁| |jhlee00987@sungkyul.ac.kr|
 
 ## ★ 프로젝트 상세 내용
 
