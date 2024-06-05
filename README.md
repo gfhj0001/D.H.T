@@ -49,6 +49,21 @@ Num|Module Name|Module Comment
 012|게임 클리어|보스 몬스터를 처치할 시 게임 클리어
 013|게임 패배|플레이어가 모든 체력을 소진할 시 게임 패배
 
+## ★ 플레이어 캐릭터 구성
+![image](https://github.com/gfhj0001/Practice/assets/63450214/e166e74d-8e3e-4835-9334-85bb37d78ec8)
+
+## ★ 플레이어 장비 구성
+![image](https://github.com/gfhj0001/Practice/assets/63450214/b6930183-1010-49ec-ba10-7bce3f677fce)
+무기 공격방식 GIF 추가 예정
+
+## ★ 보석 능력치 구성
+![image](https://github.com/gfhj0001/Practice/assets/63450214/7ac260ac-b1e2-4e2c-b4dc-01e97154bf70)
+
+## ★ 적 캐릭터 구성
+![image](https://github.com/gfhj0001/Practice/assets/63450214/6e2999a8-8c80-4c75-ae7d-c78ee179944b)
+
+## ★ 맵 구성
+![image](https://github.com/gfhj0001/Practice/assets/63450214/73fbc44c-a1b1-4fbf-92ce-0da2e004daa6)
 
 ## ★ 프로젝트 화면 구성
 ![image](https://github.com/gfhj0001/Practice/assets/63450214/9b99c524-2fbb-4aec-8146-d5dac9235e48)
