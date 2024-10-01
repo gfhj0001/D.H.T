@@ -30623,7 +30623,7 @@ MonoBehaviour:
   maxGameTime: 600
   gameLevel: 0
   health: 0
-  maxHealth: 500
+  maxHealth: 10
   itemWeapons: []
   destroyWeapon: {fileID: 0}
   itemGems: []

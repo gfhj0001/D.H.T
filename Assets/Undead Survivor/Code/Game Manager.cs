@@ -66,23 +66,31 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameOverRoutine());
     }
 
-    IEnumerator GameOverRoutine()
+   IEnumerator GameOverRoutine()
+{
+    isLive = false;
+
+    // 용암 양동이 프리셋이 Player 오브젝트 밖에 있기 때문에 게임 오버시 비활성화 해줘야 함.
+    GameObject lavaBuckitObject = GameObject.Find("Bullet 6(Clone)");
+    if (lavaBuckitObject != null)
     {
-        isLive = false;
-
-        //용암 양동이 프리셋이 Player 오브젝트 밖에 있기 때문에 게임 오버시 비활성화 해줘야 함.
-        Bullet lavaBuckitBullet = GameObject.Find("Bullet 6(Clone)").GetComponent<Bullet>();
-        lavaBuckitBullet.gameObject.SetActive(false);
-        
-        yield return new WaitForSeconds(0.5f);
-
-        uiResult.gameObject.SetActive(true);
-        uiResult.Lose();
-        Stop();
-
-        AudioManager.instance.PlayBgm(false);
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
+        Bullet lavaBuckitBullet = lavaBuckitObject.GetComponent<Bullet>();
+        if (lavaBuckitBullet != null)
+        {
+            lavaBuckitBullet.gameObject.SetActive(false);
+        }
     }
+    
+    yield return new WaitForSeconds(0.5f);
+
+    uiResult.gameObject.SetActive(true);
+    uiResult.Lose();
+    Stop();
+
+    AudioManager.instance.PlayBgm(false);
+    AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
+}
+
 
       public void GameVictory()
     {
