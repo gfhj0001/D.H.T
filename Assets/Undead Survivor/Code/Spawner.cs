@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     int level;
     float timer;
 
-    public const float BOSS_SPAWN_TIME = 10.0f; // 45초 후 보스가 스폰됨. 
+    public const float BOSS_SPAWN_TIME = 60.0f; // 45초 후 보스가 스폰됨. 
     public const int BOSS_HEALTH = 1000; // 보스 체력
     public const float BOSS_SPEED = 5.0f; // 보스 이동 속도
     private bool bossSpawned = false; //보스의 생존 여부
