@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -328,80 +330,90 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\uCC44\uCC0D_Frame_0"
+    - name: Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 7
         y: 0
         width: 3
         height: 2
       spriteId: 73fe4abbea3423040872875ab9a39554
-    - name: "\uCC44\uCC0D_Frame_1"
+    - name: Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 7
         height: 5
       spriteId: 98962b0e95f68a741bc9924f19ec210f
-    - name: "\uCC44\uCC0D_Frame_2"
+    - name: Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 6
       spriteId: cb08a3646c3329040a14ffc835424375
-    - name: "\uCC44\uCC0D_Frame_3"
+    - name: Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 7
       spriteId: b62a4b61cfa74004aa430d54b9986628
-    - name: "\uCC44\uCC0D_Frame_4"
+    - name: Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 9
       spriteId: 4d964219bec009e4aa9898c340521b0b
-    - name: "\uCC44\uCC0D_Frame_5"
+    - name: Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 12
       spriteId: 06a229031098e30429b2feb983f2f7c4
-    - name: "\uCC44\uCC0D_Frame_6"
+    - name: Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 16
       spriteId: d50c963a71a8b7b4582ca318aafad593
-    - name: "\uCC44\uCC0D_Frame_7"
+    - name: Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 16
       spriteId: 5bfc7ad8841b7654f918130d7dd345ba
-    - name: "\uCC44\uCC0D_Frame_8"
+    - name: Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
         width: 8
         height: 16
       spriteId: 819dce015aae97640be6c4c74ed420fe
-    - name: "\uCC44\uCC0D_Frame_9"
+    - name: Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
@@ -495,6 +507,7 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 18, y: 18}

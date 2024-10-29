@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        Application.targetFrameRate = 60;
     }
 
     public void GameStart()
@@ -114,6 +115,12 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void GameQuit()
+    {
+        Application.Quit();
+    }
+
     void Update()
     {
         if (!isLive)
