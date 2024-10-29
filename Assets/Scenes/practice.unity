@@ -1672,7 +1672,7 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
     GateFit: 2
     FocusDistance: 10
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 35, y: 30}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2432,9 +2432,9 @@ GameObject:
   - component: {fileID: 217320918}
   - component: {fileID: 217320917}
   - component: {fileID: 217320916}
-  - component: {fileID: 217320915}
+  - component: {fileID: 217320921}
   m_Layer: 0
-  m_Name: Tilemap (4)
+  m_Name: Tilemap4
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2455,18 +2455,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2006004633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &217320915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217320913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!66 &217320916
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -6723,7 +6711,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -11, z: 0}
   m_Size: {x: 21, y: 22, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -6742,6 +6730,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &217320921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217320913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &220147437
 GameObject:
   m_ObjectHideFlags: 0
@@ -8908,9 +8908,9 @@ GameObject:
   - component: {fileID: 497158986}
   - component: {fileID: 497158985}
   - component: {fileID: 497158984}
-  - component: {fileID: 497158983}
+  - component: {fileID: 497158989}
   m_Layer: 0
-  m_Name: Tilemap (2)
+  m_Name: Tilemap2
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8931,18 +8931,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2006004633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &497158983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497158981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!66 &497158984
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -13187,7 +13175,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -11, z: 0}
   m_Size: {x: 21, y: 22, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -13206,6 +13194,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &497158989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497158981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -13247,19 +13247,19 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 41.212162
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 35, y: 30}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -13270,7 +13270,7 @@ Camera:
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
-  orthographic: 1
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -20293,9 +20293,9 @@ GameObject:
   - component: {fileID: 1136031874}
   - component: {fileID: 1136031873}
   - component: {fileID: 1136031872}
-  - component: {fileID: 1136031871}
+  - component: {fileID: 1136031877}
   m_Layer: 0
-  m_Name: Tilemap (1)
+  m_Name: Tilemap1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20316,18 +20316,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2006004633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1136031871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136031869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!66 &1136031872
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -24580,7 +24568,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -11, z: 0}
   m_Size: {x: 21, y: 22, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -24599,6 +24587,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1136031877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136031869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136999127
 GameObject:
   m_ObjectHideFlags: 0
@@ -29877,7 +29877,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!114 &1516003944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30813,7 +30813,7 @@ MonoBehaviour:
   maxGameTime: 600
   gameLevel: 0
   health: 0
-  maxHealth: 200
+  maxHealth: 1e+15
   itemWeapons: []
   destroyWeapon: {fileID: 0}
   itemGems: []
@@ -34021,7 +34021,7 @@ GameObject:
   - component: {fileID: 1990099330}
   - component: {fileID: 1990099329}
   - component: {fileID: 1990099328}
-  - component: {fileID: 1990099327}
+  - component: {fileID: 1990099333}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Ground
@@ -34044,18 +34044,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2006004633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1990099327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990099325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!66 &1990099328
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -38312,7 +38300,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -11, y: -11, z: 0}
   m_Size: {x: 21, y: 22, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileAnchor: {x: 0, y: 0, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -38331,6 +38319,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1990099333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990099325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4916196608b877b43853cb4f2d422596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2006004631
 GameObject:
   m_ObjectHideFlags: 0

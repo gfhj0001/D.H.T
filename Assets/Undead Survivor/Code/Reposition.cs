@@ -23,18 +23,18 @@ public class Reposition : MonoBehaviour
                 diffX = Math.Abs(diffX);
                 diffY = Math.Abs(diffY);
 
-                if (diffX > diffY)
+                if (Mathf.Abs(diffX - diffY) <= 2.0f)
                 {
-                transform.Translate(Vector3.right * dirX * 40); 
+                this.transform.Translate(Vector3.right * dirX * 40);
+                this.transform.Translate(Vector3.up * dirY * 40);
+                }
+                else if (diffX > diffY)
+                {
+                this.transform.Translate(Vector3.right * dirX * 40); 
                 }
                 else if (diffX < diffY)
                 {
-                transform.Translate(Vector3.up * dirY * 40);
-                }
-                else if (diffX == diffY)
-                {
-                transform.Translate(Vector3.right * dirX * 40);
-                transform.Translate(Vector3.up * dirY * 40);
+                this.transform.Translate(Vector3.up * dirY * 40);
                 }
                 break;
             case "Enemy":
