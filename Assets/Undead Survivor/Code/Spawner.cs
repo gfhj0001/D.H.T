@@ -6,18 +6,14 @@ public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
-    // public float levelTime;
     int level;
     float timer;
 
-    public const float BOSS_SPAWN_TIME = 60.0f; // 45초 후 보스가 스폰됨. 
-    public const int BOSS_HEALTH = 1000; // 보스 체력
-    public const float BOSS_SPEED = 5.0f; // 보스 이동 속도
+    public const float BOSS_SPAWN_TIME = 45.0f; // n초 후 보스가 스폰됨. 
+    public const int BOSS_HEALTH = 375; // 보스 체력
+    public const float BOSS_SPEED = 4.0f; // 보스 이동 속도
     private bool bossSpawned = false; //보스의 생존 여부
-    public const float MID_BOSS_SPAWN_TIME = 200.0f; // 예를 들어, 30초 후에 중간 보스를 스폰하려면 이 값을 30.0f로 설정합니다.
-    public const int MID_BOSS_HEALTH = 500; // 중간 보스의 체력을 500으로 설정
-    public const float MID_BOSS_SPEED = 3.0f; // 중간 보스의 이동속도를 3.0으로 설정
-    private bool midBossSpawned = false;
+
 
     private 
     void Awake()
@@ -39,13 +35,6 @@ public class Spawner : MonoBehaviour
             GameManager.instance.gameLevel = level;
             Spawn();
         }
-
-        // 중간 보스 스폰 로직
-        if (!midBossSpawned && GameManager.instance.gameTime >= MID_BOSS_SPAWN_TIME)
-        {
-            SpawnMidBoss();
-            midBossSpawned = true; // 중간 보스가 스폰되었음을 표시
-        }
    
         
         if (!bossSpawned && GameManager.instance.gameTime >= BOSS_SPAWN_TIME)
@@ -60,19 +49,6 @@ public class Spawner : MonoBehaviour
             GameObject enemy = GameManager.instance.Pool.Get(0);
             enemy.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
             enemy.GetComponent<Enemy>().Init(spawnData[level]);
-        }
-
-        void SpawnMidBoss()
-        {
-            GameObject midBoss = GameManager.instance.Pool.Get(PoolManager.MID_BOSS_PREFAB_INDEX);
-            midBoss.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
-
-               // 중간 보스의 속성을 직접 설정
-            Enemy midBossEnemy = midBoss.GetComponent<Enemy>();
-            midBossEnemy.health = MID_BOSS_HEALTH;
-            midBossEnemy.speed = MID_BOSS_SPEED;
-
-            // 필요한 경우 추가적인 중간 보스 전용 속성을 여기에서 설정할 수 있습니다.
         }
 
     void SpawnBoss()
